@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ts:token xmlns:ts="http://tokenscript.org/2022/09/tokenscript"
+		  xmlns:xml="http://www.w3.org/XML/1998/namespace"
+		  xsi:schemaLocation="http://tokenscript.org/2022/09/tokenscript http://tokenscript.org/2022/09/tokenscript.xsd"
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  xmlns:ethereum="urn:ethereum:constantinople"
+		  xmlns:xhmtl="http://www.w3.org/1999/xhtml"
+		  name="SmartCat">
+	<ts:label>
+		<ts:plurals xml:lang="en">
+			<ts:string quantity="one">SmartCat</ts:string>
+			<ts:string quantity="other">SmartCats</ts:string>
+		</ts:plurals>
+	</ts:label>
+
+	<ts:meta>
+		<ts:description xml:lang="en">Adopt a cat and boost their intelligence through fun care tasks.</ts:description>
+		<ts:aboutUrl xml:lang="en">https://medium.com/alphawallet/the-smart-cat-is-out-of-the-bag-b631d2588de2</ts:aboutUrl>
+	</ts:meta>
+
+	<ts:contract interface="erc721" name="SmartCatNFT">
+		<!-- local-testing: <ts:address network="31337">0x5FbDB2315678afecb367f032d93F642f64180aa3</ts:address> -->
+		<!-- sepolia: <ts:address network="11155111">0x1d6E5bcF82D2515214D2EB0d4a79Ca35a2428827</ts:address> -->
+		<!-- polygon mumbai: <ts:address network="80001">0x614cF3021705977c2eF4beb9D7f10a6bF4EAEBF6</ts:address> -->
+		<!-- polygon mainnet: <ts:address network="137">0xD5cA946AC1c1F24Eb26dae9e1A53ba6a02bd97Fe</ts:address> -->
+		<ts:address network="80001">0x614cF3021705977c2eF4beb9D7f10a6bF4EAEBF6</ts:address>
+	</ts:contract>
+	<ts:contract name="SmartCatScore">
+		<!-- local-testing: <ts:address network="31337">0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9</ts:address> -->
+		<!-- new sepolia: <ts:address network="11155111">0x97378881EE853457bC8743C882EBDBD57312ed33</ts:address> -->
+		<!-- polygon mumbai: <ts:address network="80001">0xDDC2388Bd646432DFf29B75A361060D26C2f8397</ts:address> -->
+		<!-- polygon mainnet: <ts:address network="137">0x7573933eB12Fa15D5557b74fDafF845B3BaF0ba2</ts:address> -->
+		<ts:address network="80001">0xDDC2388Bd646432DFf29B75A361060D26C2f8397</ts:address>
+	</ts:contract>
+	<ts:contract name="wETH">
+		<!-- local-testing: <ts:address network="31337">0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e</ts:address> -->
+		<!-- polygon mumbai: <ts:address network="80001">0x3B0deCF3FCe1abD6717B045C47f4558C67fE79fa</ts:address> -->
+		<ts:address network="80001">0x3B0deCF3FCe1abD6717B045C47f4558C67fE79fa</ts:address>
+	</ts:contract>
+	<ts:contract name="SmartCatLoot">
+		<!-- local-testing: <ts:address network="31337">0x9A676e781A523b5d0C0e43731313A708CB607508</ts:address> -->
+		<!-- polygon mumbai: <ts:address network="80001">0x3F1108368CBa706990590d15ce7ADDEE8224203B</ts:address> -->
+		<ts:address network="80001">0x3F1108368CBa706990590d15ce7ADDEE8224203B</ts:address>
+		<ts:abi>
+			<![CDATA[
+			[
+				{
+				  "inputs": [
+					{
+					  "internalType": "address",
+					  "name": "target",
+					  "type": "address"
+					}
+				  ],
+				  "name": "AddressEmptyCode",
+				  "type": "error"
+				},
+				{
+				  "inputs": [
+					{
+					  "internalType": "address",
+					  "name": "account",
+					  "type": "address"
+					}
+				  ],
+				  "name": "AddressInsufficientBalance",
+				  "type": "error"
+				},
+				{
+				  "inputs": [],
+				  "name": "CatAlreadyPlayedWithToy",
+				  "type": "error"
+				},
+				{
+				  "inputs": [
+					{
+					  "internalType": "address",
+					  "name": "sender",
+					  "type": "address"
+					},
+					{
+					  "internalType": "uint256",
+					  "name": "tokenId",
+					  "type": "uint256"
+					},
+					{
+					  "internalType": "address",
+					  "name": "owner",
+					  "type": "address"
+					}
+				  ],
+				  "name": "ERC721IncorrectOwner",
+				  "type": "error"
+				},
+				{
+				  "inputs": [
+					{
+					  "internalType": "address",
+					  "name": "operator",
+					  "type": "address"
+					},
+					{
+					  "internalType": "uint256",
+					  "name": "tokenId",
+					  "type": "uint256"
+					}
+				  ],
+				  "name": "ERC721InsufficientApproval",
+				  "type": "error"
+				},
+				{
+				  "inputs": [
+					{
+					  "internalType": "address",
+					  "name": "approver",
+					  "type": "address"
+					}
+				  ],
+				  "name": "ERC721InvalidApprover",
+				  "type": "error"
+				},
+				{
+				  "inputs": [
+					{
+					  "internalType": "address",
+					  "name": "operator",
+					  "type": "address"
+					}
+				  ],
+				  "name": "ERC721InvalidOperator",
+				  "type": "error"
+				},
+				{
+				  "inputs": [
+					{
+					  "internalType": "address",
+					  "name": "owner",
+					  "type": "address"
+					}
+				  ],
+				  "name": "ERC721InvalidOwner",
+				  "type": "error"
+				},
+				{
+				  "inputs": [
+					{
+					  "internalType": "address",
+					  "name": "receiver",
+					  "type": "address"
+					}
+				  ],
+				  "name": "ERC721InvalidReceiver",
+				  "type": "error"
+				},
+				{
+				  "inputs": [
+					{
+					  "internalType": "address",
+					  "name": "sender",
+					  "type": "address"
+					}
+				  ],
+				  "name": "ERC721InvalidSender",
+				  "type": "error"
+				},
+				{
+				  "inputs": [
+					{
+					  "internalType": "uint256",
+					  "name": "tokenId",
+					  "type": "uint256"
+					}
+				  ],
+				  "name": "ERC721NonexistentToken",
+				  "type": "error"
+				},
+				{
+				  "inputs": [],
+				  "name": "ExistingTokenRequired",
+				  "type": "error"
+				},
+				{
+				  "inputs": [],
+				  "name": "FailedInnerCall",
+				  "type": "error"
+				},
+				{
+				  "inputs": [],
+				  "name": "IndexOutOfBounds",
+				  "type": "error"
+				},
+				{
+				  "inputs": [],
+				  "name": "InvalidInitialization",
+				  "type": "error"
+				},
+				{
+				  "inputs": [],
+				  "name": "InvalidSignature",
+				  "type": "error"
+				},
+				{
+				  "inputs": [],
+				  "name": "MintLimitReached",
+				  "type": "error"
+				},
+				{
+				  "inputs": [],
+				  "name": "MintingNotStarted",
+				  "type": "error"
+				},
+				{
+				  "inputs": [
+					{
+					  "internalType": "uint256",
+					  "name": "tokenId",
+					  "type": "uint256"
+					}
+				  ],
+				  "name": "NeedToOwnTheToy",
+				  "type": "error"
+				},
+				{
+				  "inputs": [],
+				  "name": "NonZeroBalanceRequired",
+				  "type": "error"
+				},
+				{
+				  "inputs": [],
+				  "name": "NotInitializing",
+				  "type": "error"
+				},
+				{
+				  "inputs": [],
+				  "name": "OnlyForSmartCatHolders",
+				  "type": "error"
+				},
+				{
+				  "inputs": [],
+				  "name": "OnlyOneToyMintAllowed",
+				  "type": "error"
+				},
+				{
+				  "inputs": [],
+				  "name": "OnlyOneToyMintPerCatAllowed",
+				  "type": "error"
+				},
+				{
+				  "inputs": [
+					{
+					  "internalType": "address",
+					  "name": "owner",
+					  "type": "address"
+					}
+				  ],
+				  "name": "OwnableInvalidOwner",
+				  "type": "error"
+				},
+				{
+				  "inputs": [
+					{
+					  "internalType": "address",
+					  "name": "account",
+					  "type": "address"
+					}
+				  ],
+				  "name": "OwnableUnauthorizedAccount",
+				  "type": "error"
+				},
+				{
+				  "inputs": [
+					{
+					  "internalType": "address",
+					  "name": "token",
+					  "type": "address"
+					}
+				  ],
+				  "name": "SafeERC20FailedOperation",
+				  "type": "error"
+				},
+				{
+				  "inputs": [],
+				  "name": "SmartCatMustBeAdoptedToMint",
+				  "type": "error"
+				},
+				{
+				  "inputs": [],
+				  "name": "WethNotAllowed",
+				  "type": "error"
+				},
+				{
+				  "inputs": [],
+				  "name": "WrongSigner",
+				  "type": "error"
+				},
+				{
+				  "inputs": [],
+				  "name": "ZeroAddressCantBeOwner",
+				  "type": "error"
+				}
+			]
+		]]>
+		</ts:abi>
+	</ts:contract>
+
+	<ts:origins>
+		<!-- Define the contract which holds the token that the user will use -->
+		<ts:ethereum contract="SmartCatNFT"/>
+	</ts:origins>
+
+	<ts:selection name="alreadyFed" filter="canFeed=FALSE">
+		<ts:label>
+			<ts:string xml:lang="en">Already fed!</ts:string>
+		</ts:label>
+	</ts:selection>
+	<ts:selection name="alreadyPlayed" filter="canPlay=FALSE">
+		<ts:label>
+			<ts:string xml:lang="en">Too tired!</ts:string>
+		</ts:label>
+	</ts:selection>
+	<ts:selection name="alreadyCleaned" filter="canClean=FALSE">
+		<ts:label>
+			<ts:string xml:lang="en">Already cleaned!</ts:string>
+		</ts:label>
+	</ts:selection>
+	<ts:selection name="cantLevelUp" filter="canLevelUp=FALSE">
+		<ts:label>
+			<ts:string xml:lang="en">Can't level up yet!</ts:string>
+		</ts:label>
+	</ts:selection>
+	<ts:selection name="notAdoptedYet" filter="level=0">
+		<ts:label>
+			<ts:string xml:lang="en">You must adopt and feed your cat first!</ts:string>
+		</ts:label>
+	</ts:selection>
+	<ts:selection name="adopted" filter="level>0">
+		<ts:label>
+			<ts:string xml:lang="en">Cat already adopted</ts:string>
+		</ts:label>
+	</ts:selection>
+	<ts:selection name="sufficientAllowance" filter="wethAllowance>99999999999999999">
+		<ts:label>
+			<ts:string xml:lang="en">Already approved</ts:string>
+		</ts:label>
+	</ts:selection>
+	<ts:selection name="insufficientAllowance" filter="wethAllowance&lt;100000000000000000">
+		<ts:label>
+			<ts:string xml:lang="en">Approve wETH first</ts:string>
+		</ts:label>
+	</ts:selection>
+
+	<ts:cards>
+		<ts:viewContent name="common" xmlns="http://www.w3.org/1999/xhtml">
+			<ts:include type="html" src="./dist/index.html"/>
+			<ts:include type="css" src="./src/styles.css"/>
+		</ts:viewContent>
+
+		<!--<ts:card type="action" name="New" origins="SmartCatNFT" exclude="notAdoptedYet" buttonClass="featured">
+			<ts:label>
+				<ts:string xml:lang="en">Win a CoolCat!</ts:string>
+			</ts:label>
+			<ts:view xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" urlFragment="newChallenges" uiButton="false">
+				<ts:viewContent name="common"/>
+			</ts:view>
+		</ts:card>-->
+
+		<ts:card type="action" name="purchaseLoot" origins="SmartCatNFT" exclude="sufficientAllowance" buttonClass="featured">
+			<ts:label>
+				<ts:string xml:lang="en">Mint Cat Loot xNFT</ts:string>
+			</ts:label>
+			<ts:attribute name="invitee">
+				<ts:type><ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax></ts:type>
+				<ts:origins>
+					<ts:user-entry as="uint" />
+				</ts:origins>
+			</ts:attribute>
+			<ts:transaction>
+				<ethereum:transaction as="uint" contract="wETH" function="approve">
+					<ts:data>
+						<ts:address>0x3F1108368CBa706990590d15ce7ADDEE8224203B</ts:address>
+						<ts:uint256>100000000000000000</ts:uint256>
+					</ts:data>
+				</ethereum:transaction>
+			</ts:transaction>
+			<ts:view xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" urlFragment="lootApprove">
+				<ts:viewContent name="common"/>
+			</ts:view>
+		</ts:card>
+
+		<ts:card type="action" name="finalizeLoot" origins="SmartCatNFT" exclude="insufficientAllowance" buttonClass="featured">
+			<ts:label>
+				<ts:string xml:lang="en">Complete Cat Loot Minting</ts:string>
+			</ts:label>
+			<ts:attribute name="whitelistSig">
+				<ts:type><ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax></ts:type>
+				<ts:origins>
+					<ts:user-entry as="bytes" />
+				</ts:origins>
+			</ts:attribute>
+			<ts:transaction>
+				<ethereum:transaction as="uint" contract="SmartCatLoot" function="buy">
+					<ts:data>
+						<ts:uint256 ref="tokenId"/>
+						<ts:bytes local-ref="whitelistSig"/>
+					</ts:data>
+				</ethereum:transaction>
+			</ts:transaction>
+			<ts:view xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" urlFragment="lootPurchase">
+				<ts:viewContent name="common"/>
+			</ts:view>
+		</ts:card>
+
+		<ts:card type="token" name="Info" origins="SmartCatNFT" exclude="notAdoptedYet">
+			<ts:label>
+				<ts:string xml:lang="en">Cat Bio</ts:string>
+			</ts:label>
+			<ts:view xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" urlFragment="info">
+				<ts:viewContent name="common"/>
+			</ts:view>
+		</ts:card>
+
+		<ts:card type="action" name="adopt" origins="SmartCatNFT" exclude="adopted">
+			<ts:label>
+				<ts:string xml:lang="en">Adopt</ts:string>
+			</ts:label>
+			<ts:transaction>
+				<ethereum:transaction as="uint" contract="SmartCatScore" function="feedCat">
+					<ts:data>
+						<ts:uint256 ref="tokenId"/>
+					</ts:data>
+				</ethereum:transaction>
+			</ts:transaction>
+			<ts:view xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" urlFragment="adopt">
+				<ts:viewContent name="common"/>
+			</ts:view>
+		</ts:card>
+
+		<ts:card type="action" name="levelUp" origins="SmartCatNFT" exclude="cantLevelUp">
+			<ts:label>
+				<ts:string xml:lang="en">Level Up!</ts:string>
+			</ts:label>
+			<ts:transaction>
+				<ethereum:transaction as="uint" contract="SmartCatScore" function="levelUp">
+					<ts:data>
+						<ts:uint256 ref="tokenId"/>
+					</ts:data>
+				</ethereum:transaction>
+			</ts:transaction>
+			<ts:view xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" urlFragment="levelUp">
+				<ts:viewContent name="common"/>
+			</ts:view>
+		</ts:card>
+
+		<ts:card type="action" name="feedCat" origins="SmartCatNFT" exclude="alreadyFed">
+			<ts:label>
+				<ts:string xml:lang="en">Feed Cat</ts:string>
+			</ts:label>
+			<ts:transaction>
+				<ethereum:transaction as="uint" contract="SmartCatScore" function="feedCat">
+					<ts:data>
+						<ts:uint256 ref="tokenId"/>
+					</ts:data>
+				</ethereum:transaction>
+			</ts:transaction>
+			<ts:view xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" urlFragment="feed">
+				<ts:viewContent name="common"/>
+			</ts:view>
+		</ts:card>
+
+		<ts:card type="action" name="cleanCat" origins="SmartCatNFT" exclude="alreadyCleaned">
+			<ts:label>
+				<ts:string xml:lang="en">Clean Cat</ts:string>
+			</ts:label>
+			<ts:transaction>
+				<ethereum:transaction as="uint" contract="SmartCatScore" function="cleanCat">
+					<ts:data>
+						<ts:uint256 ref="tokenId"/>
+					</ts:data>
+				</ethereum:transaction>
+			</ts:transaction>
+			<ts:view xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" urlFragment="clean">
+				<ts:viewContent name="common"/>
+			</ts:view>
+		</ts:card>
+
+		<ts:card type="action" name="playDateRequests" origins="SmartCatNFT" exclude="alreadyPlayed">
+			<ts:label>
+				<ts:string xml:lang="en">Accept Playdates</ts:string>
+			</ts:label>
+			<ts:attribute name="inviter">
+				<ts:type><ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax></ts:type>
+				<ts:origins>
+					<ts:user-entry as="uint" />
+				</ts:origins>
+			</ts:attribute>
+			<ts:transaction>
+				<ethereum:transaction as="uint" contract="SmartCatScore" function="acceptPlayDate">
+					<ts:data>
+						<ts:uint256 ref="tokenId"/>
+						<ts:uint256 local-ref="inviter"/>
+					</ts:data>
+				</ethereum:transaction>
+			</ts:transaction>
+			<ts:view xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" urlFragment="play">
+				<ts:viewContent name="common"/>
+			</ts:view>
+		</ts:card>
+
+		<ts:card type="action" name="inviteCat" origins="SmartCatNFT" exclude="notAdoptedYet">
+			<ts:label>
+				<ts:string xml:lang="en">Invite Cat for Playdate</ts:string>
+			</ts:label>
+			<ts:attribute name="invitee">
+				<ts:type><ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax></ts:type>
+				<ts:origins>
+					<ts:user-entry as="uint" />
+				</ts:origins>
+			</ts:attribute>
+			<ts:transaction>
+				<ethereum:transaction as="uint" contract="SmartCatScore" function="inviteCatForPlaying">
+					<ts:data>
+						<ts:uint256 ref="tokenId"/>
+						<ts:uint256 local-ref="invitee"/>
+					</ts:data>
+				</ethereum:transaction>
+			</ts:transaction>
+			<ts:view xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" urlFragment="invite">
+				<ts:viewContent name="common"/>
+			</ts:view>
+		</ts:card>
+
+		<ts:card type="action" name="messages" origins="SmartCatNFT" exclude="notAdoptedYet">
+			<ts:label>
+				<ts:string xml:lang="en">Messages</ts:string>
+			</ts:label>
+			<ts:view xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" urlFragment="messages" uiButton="false">
+				<ts:viewContent name="common"/>
+			</ts:view>
+		</ts:card>
+
+		<ts:card type="action" name="Partners" origins="SmartCatNFT" exclude="notAdoptedYet">
+			<ts:label>
+				<ts:string xml:lang="en">Partners</ts:string>
+			</ts:label>
+			<ts:view xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" urlFragment="partners" uiButton="false">
+				<ts:viewContent name="common"/>
+			</ts:view>
+		</ts:card>
+
+	</ts:cards>
+
+	<ts:attribute name="level">
+		<ts:type><ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax></ts:type>
+		<ts:label>
+			<ts:string xml:lang="en">Level</ts:string>
+		</ts:label>
+		<ts:origins>
+			<ethereum:call function="getLevel" contract="SmartCatScore" as="uint">
+				<ts:data>
+					<ts:uint256 ref="tokenId"/>
+				</ts:data>
+			</ethereum:call>
+		</ts:origins>
+	</ts:attribute>
+
+	<ts:attribute name="canFeed">
+		<ts:type><ts:syntax>1.3.6.1.4.1.1466.115.121.1.7</ts:syntax></ts:type>
+		<ts:label>
+			<ts:string xml:lang="en">Can Feed</ts:string>
+		</ts:label>
+		<ts:origins>
+			<ethereum:call function="canFeed" contract="SmartCatScore" as="bool">
+				<ts:data>
+					<ts:uint256 ref="tokenId"/>
+				</ts:data>
+			</ethereum:call>
+		</ts:origins>
+	</ts:attribute>
+
+	<ts:attribute name="canPlay">
+		<ts:type><ts:syntax>1.3.6.1.4.1.1466.115.121.1.7</ts:syntax></ts:type>
+		<ts:label>
+			<ts:string xml:lang="en">Can Play</ts:string>
+		</ts:label>
+		<ts:origins>
+			<ethereum:call function="canPlay" contract="SmartCatScore" as="bool">
+				<ts:data>
+					<ts:uint256 ref="tokenId"/>
+				</ts:data>
+			</ethereum:call>
+		</ts:origins>
+	</ts:attribute>
+
+	<ts:attribute name="canClean">
+		<ts:type><ts:syntax>1.3.6.1.4.1.1466.115.121.1.7</ts:syntax></ts:type>
+		<ts:label>
+			<ts:string xml:lang="en">Can Clean</ts:string>
+		</ts:label>
+		<ts:origins>
+			<ethereum:call function="canClean" contract="SmartCatScore" as="bool">
+				<ts:data>
+					<ts:uint256 ref="tokenId"/>
+				</ts:data>
+			</ethereum:call>
+		</ts:origins>
+	</ts:attribute>
+
+	<ts:attribute name="canLevelUp">
+		<ts:type><ts:syntax>1.3.6.1.4.1.1466.115.121.1.7</ts:syntax></ts:type>
+		<ts:label>
+			<ts:string xml:lang="en">Can Level Up</ts:string>
+		</ts:label>
+		<ts:origins>
+			<ethereum:call function="canLevelUp" contract="SmartCatScore" as="bool">
+				<ts:data>
+					<ts:uint256 ref="tokenId"/>
+				</ts:data>
+			</ethereum:call>
+		</ts:origins>
+	</ts:attribute>
+
+	<ts:attribute name="wethAllowance">
+		<ts:type><ts:syntax>1.3.6.1.4.1.1466.115.121.1.27</ts:syntax></ts:type>
+		<ts:origins>
+			<ethereum:call function="allowance" contract="wETH" as="uint">
+				<ts:data>
+					<ts:address ref="ownerAddress"/>
+					<ts:address>0x3F1108368CBa706990590d15ce7ADDEE8224203B</ts:address>
+				</ts:data>
+			</ethereum:call>
+		</ts:origins>
+	</ts:attribute>
+
+</ts:token>

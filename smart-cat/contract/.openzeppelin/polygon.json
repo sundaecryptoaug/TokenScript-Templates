@@ -1,0 +1,2123 @@
+{
+  "manifestVersion": "3.2",
+  "admin": {
+    "address": "0x487361F1e70a991351Fa48028545DaF545673ADb",
+    "txHash": "0x8b1b920bcee32e9e4cd6da566e9277c820de1029984873b180d9a010532ed1ef"
+  },
+  "proxies": [
+    {
+      "address": "0x7573933eB12Fa15D5557b74fDafF845B3BaF0ba2",
+      "txHash": "0x83734b5ae1795a7d466cee91d5c62cabd526d27258d23b8e95085db430b078ec",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "79029e95563cd286c34a658a1fb9eb53f1b836707fb419e9efeb5aae2e1ab3ff": {
+      "address": "0x601bC9fA3D38Fe78a43c6B4cC4A885823D336288",
+      "txHash": "0x7b4772742fdbd2859cd01929aed8fa6a5cd8e597c0157a8d41d5c317f8dabfa2",
+      "layout": {
+        "solcVersion": "0.8.20",
+        "storage": [
+          {
+            "label": "nftContractAddress",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_address",
+            "contract": "SmartCatProxy",
+            "src": "contracts/SmartCatProxy.sol:15"
+          },
+          {
+            "label": "minIntervals",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)3_storage",
+            "contract": "SmartCatProxy",
+            "src": "contracts/SmartCatProxy.sol:18"
+          },
+          {
+            "label": "minLevelUpScores",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_array(t_uint16)3_storage",
+            "contract": "SmartCatProxy",
+            "src": "contracts/SmartCatProxy.sol:19"
+          },
+          {
+            "label": "maxLevel",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_uint8",
+            "contract": "SmartCatProxy",
+            "src": "contracts/SmartCatProxy.sol:21"
+          },
+          {
+            "label": "catStates",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_mapping(t_uint256,t_struct(CatState)3465_storage)",
+            "contract": "SmartCatProxy",
+            "src": "contracts/SmartCatProxy.sol:48"
+          },
+          {
+            "label": "playInvites",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)",
+            "contract": "SmartCatProxy",
+            "src": "contracts/SmartCatProxy.sol:51"
+          },
+          {
+            "label": "catIds",
+            "offset": 0,
+            "slot": "8",
+            "type": "t_array(t_uint256)dyn_storage",
+            "contract": "SmartCatProxy",
+            "src": "contracts/SmartCatProxy.sol:53"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_struct(InitializableStorage)45_storage": {
+            "label": "struct Initializable.InitializableStorage",
+            "members": [
+              {
+                "label": "_initialized",
+                "type": "t_uint64",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "_initializing",
+                "type": "t_bool",
+                "offset": 8,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_struct(OwnableStorage)14_storage": {
+            "label": "struct OwnableUpgradeable.OwnableStorage",
+            "members": [
+              {
+                "label": "_owner",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_uint64": {
+            "label": "uint64",
+            "numberOfBytes": "8"
+          },
+          "t_array(t_uint16)3_storage": {
+            "label": "uint16[3]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint256)3_storage": {
+            "label": "uint256[3]",
+            "numberOfBytes": "96"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)": {
+            "label": "mapping(uint256 => uint256[])",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(CatState)3465_storage)": {
+            "label": "mapping(uint256 => struct SmartCatProxy.CatState)",
+            "numberOfBytes": "32"
+          },
+          "t_struct(CatState)3465_storage": {
+            "label": "struct SmartCatProxy.CatState",
+            "members": [
+              {
+                "label": "level",
+                "type": "t_uint8",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "numFeeds",
+                "type": "t_uint16",
+                "offset": 1,
+                "slot": "0"
+              },
+              {
+                "label": "lastFeed",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "numPlays",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "lastPlay",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "numCleans",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "lastClean",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "friends",
+                "type": "t_array(t_uint256)dyn_storage",
+                "offset": 0,
+                "slot": "6"
+              }
+            ],
+            "numberOfBytes": "224"
+          },
+          "t_uint16": {
+            "label": "uint16",
+            "numberOfBytes": "2"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        },
+        "namespaces": {
+          "erc7201:openzeppelin.storage.Ownable": [
+            {
+              "contract": "OwnableUpgradeable",
+              "label": "_owner",
+              "type": "t_address",
+              "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:24",
+              "offset": 0,
+              "slot": "0"
+            }
+          ],
+          "erc7201:openzeppelin.storage.Initializable": [
+            {
+              "contract": "Initializable",
+              "label": "_initialized",
+              "type": "t_uint64",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:69",
+              "offset": 0,
+              "slot": "0"
+            },
+            {
+              "contract": "Initializable",
+              "label": "_initializing",
+              "type": "t_bool",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:73",
+              "offset": 8,
+              "slot": "0"
+            }
+          ]
+        }
+      }
+    },
+    "05741e5394da2dec3233da3cd556bd2a224a23e7f16e99740b91daef098011c4": {
+      "address": "0xBc38B8d5EDbBEa727E4050fe0901D32ef0edf0F1",
+      "txHash": "0x76a0673d8593cbdbd9a90da27b0705c465b928b1ff29196849a6af018167c585",
+      "layout": {
+        "solcVersion": "0.8.20",
+        "storage": [
+          {
+            "label": "nftContractAddress",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_address",
+            "contract": "SmartCatProxyV2",
+            "src": "contracts/SmartCatProxyV2.sol:16"
+          },
+          {
+            "label": "minIntervals",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)3_storage",
+            "contract": "SmartCatProxyV2",
+            "src": "contracts/SmartCatProxyV2.sol:19"
+          },
+          {
+            "label": "minLevelUpScores",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_array(t_uint16)3_storage",
+            "contract": "SmartCatProxyV2",
+            "src": "contracts/SmartCatProxyV2.sol:20"
+          },
+          {
+            "label": "maxLevel",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_uint8",
+            "contract": "SmartCatProxyV2",
+            "src": "contracts/SmartCatProxyV2.sol:22"
+          },
+          {
+            "label": "catStates",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_mapping(t_uint256,t_struct(CatState)5585_storage)",
+            "contract": "SmartCatProxyV2",
+            "src": "contracts/SmartCatProxyV2.sol:49"
+          },
+          {
+            "label": "playInvites",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)",
+            "contract": "SmartCatProxyV2",
+            "src": "contracts/SmartCatProxyV2.sol:52"
+          },
+          {
+            "label": "catIds",
+            "offset": 0,
+            "slot": "8",
+            "type": "t_array(t_uint256)dyn_storage",
+            "contract": "SmartCatProxyV2",
+            "src": "contracts/SmartCatProxyV2.sol:54"
+          },
+          {
+            "label": "levelAwards",
+            "offset": 0,
+            "slot": "9",
+            "type": "t_array(t_uint256)dyn_storage",
+            "contract": "SmartCatProxyV2",
+            "src": "contracts/SmartCatProxyV2.sol:56"
+          },
+          {
+            "label": "pointBalances",
+            "offset": 0,
+            "slot": "10",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "contract": "SmartCatProxyV2",
+            "src": "contracts/SmartCatProxyV2.sol:57"
+          },
+          {
+            "label": "version",
+            "offset": 0,
+            "slot": "11",
+            "type": "t_uint16",
+            "contract": "SmartCatProxyV2",
+            "src": "contracts/SmartCatProxyV2.sol:66"
+          },
+          {
+            "label": "maxActionState",
+            "offset": 0,
+            "slot": "12",
+            "type": "t_mapping(t_uint256,t_struct(MaxActionState)5638_storage)",
+            "contract": "SmartCatProxyV2",
+            "src": "contracts/SmartCatProxyV2.sol:73"
+          },
+          {
+            "label": "maxActions",
+            "offset": 0,
+            "slot": "13",
+            "type": "t_uint16",
+            "contract": "SmartCatProxyV2",
+            "src": "contracts/SmartCatProxyV2.sol:75"
+          },
+          {
+            "label": "maxActionsInterval",
+            "offset": 0,
+            "slot": "14",
+            "type": "t_uint256",
+            "contract": "SmartCatProxyV2",
+            "src": "contracts/SmartCatProxyV2.sol:76"
+          },
+          {
+            "label": "authorisedProxyAddresses",
+            "offset": 0,
+            "slot": "15",
+            "type": "t_array(t_address)dyn_storage",
+            "contract": "SmartCatProxyV2",
+            "src": "contracts/SmartCatProxyV2.sol:78"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_struct(InitializableStorage)45_storage": {
+            "label": "struct Initializable.InitializableStorage",
+            "members": [
+              {
+                "label": "_initialized",
+                "type": "t_uint64",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "_initializing",
+                "type": "t_bool",
+                "offset": 8,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_struct(OwnableStorage)14_storage": {
+            "label": "struct OwnableUpgradeable.OwnableStorage",
+            "members": [
+              {
+                "label": "_owner",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_uint64": {
+            "label": "uint64",
+            "numberOfBytes": "8"
+          },
+          "t_array(t_address)dyn_storage": {
+            "label": "address[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint16)3_storage": {
+            "label": "uint16[3]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint256)3_storage": {
+            "label": "uint256[3]",
+            "numberOfBytes": "96"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)": {
+            "label": "mapping(uint256 => uint256[])",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(CatState)5585_storage)": {
+            "label": "mapping(uint256 => struct SmartCatProxyV2.CatState)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(MaxActionState)5638_storage)": {
+            "label": "mapping(uint256 => struct SmartCatProxyV2.MaxActionState)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_struct(CatState)5585_storage": {
+            "label": "struct SmartCatProxyV2.CatState",
+            "members": [
+              {
+                "label": "level",
+                "type": "t_uint8",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "numFeeds",
+                "type": "t_uint16",
+                "offset": 1,
+                "slot": "0"
+              },
+              {
+                "label": "lastFeed",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "numPlays",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "lastPlay",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "numCleans",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "lastClean",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "friends",
+                "type": "t_array(t_uint256)dyn_storage",
+                "offset": 0,
+                "slot": "6"
+              }
+            ],
+            "numberOfBytes": "224"
+          },
+          "t_struct(MaxActionState)5638_storage": {
+            "label": "struct SmartCatProxyV2.MaxActionState",
+            "members": [
+              {
+                "label": "firstActionTimestamp",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "count",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint16": {
+            "label": "uint16",
+            "numberOfBytes": "2"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        },
+        "namespaces": {
+          "erc7201:openzeppelin.storage.Ownable": [
+            {
+              "contract": "OwnableUpgradeable",
+              "label": "_owner",
+              "type": "t_address",
+              "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:24",
+              "offset": 0,
+              "slot": "0"
+            }
+          ],
+          "erc7201:openzeppelin.storage.Initializable": [
+            {
+              "contract": "Initializable",
+              "label": "_initialized",
+              "type": "t_uint64",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:69",
+              "offset": 0,
+              "slot": "0"
+            },
+            {
+              "contract": "Initializable",
+              "label": "_initializing",
+              "type": "t_bool",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:73",
+              "offset": 8,
+              "slot": "0"
+            }
+          ]
+        }
+      }
+    },
+    "ce4635f5b15bb73d2c85297093518751ce419e390eda6eac9d6a19e93cf6289a": {
+      "address": "0x64b763547660CDac4dB1a0387E7cd682B6DA8727",
+      "txHash": "0xf800e451072d3b0f6d3c4d97e5db9f248c49661cf3b0ae58769300d7c58791b3",
+      "layout": {
+        "solcVersion": "0.8.20",
+        "storage": [
+          {
+            "label": "nftContractAddress",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_address",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:16"
+          },
+          {
+            "label": "minIntervals",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)3_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:19"
+          },
+          {
+            "label": "minLevelUpScores",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_array(t_uint16)3_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:20"
+          },
+          {
+            "label": "maxLevel",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_uint8",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:22"
+          },
+          {
+            "label": "catStates",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_mapping(t_uint256,t_struct(CatState)5585_storage)",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:49"
+          },
+          {
+            "label": "playInvites",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:52"
+          },
+          {
+            "label": "catIds",
+            "offset": 0,
+            "slot": "8",
+            "type": "t_array(t_uint256)dyn_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:54"
+          },
+          {
+            "label": "levelAwards",
+            "offset": 0,
+            "slot": "9",
+            "type": "t_array(t_uint256)dyn_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:56"
+          },
+          {
+            "label": "pointBalances",
+            "offset": 0,
+            "slot": "10",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:57"
+          },
+          {
+            "label": "version",
+            "offset": 0,
+            "slot": "11",
+            "type": "t_uint16",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:66"
+          },
+          {
+            "label": "maxActionState",
+            "offset": 0,
+            "slot": "12",
+            "type": "t_mapping(t_uint256,t_struct(MaxActionState)5638_storage)",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:73"
+          },
+          {
+            "label": "maxActions",
+            "offset": 0,
+            "slot": "13",
+            "type": "t_uint16",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:75"
+          },
+          {
+            "label": "maxActionsInterval",
+            "offset": 0,
+            "slot": "14",
+            "type": "t_uint256",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:76"
+          },
+          {
+            "label": "authorisedProxyAddresses",
+            "offset": 0,
+            "slot": "15",
+            "type": "t_array(t_address)dyn_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:78"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_struct(InitializableStorage)45_storage": {
+            "label": "struct Initializable.InitializableStorage",
+            "members": [
+              {
+                "label": "_initialized",
+                "type": "t_uint64",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "_initializing",
+                "type": "t_bool",
+                "offset": 8,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_struct(OwnableStorage)14_storage": {
+            "label": "struct OwnableUpgradeable.OwnableStorage",
+            "members": [
+              {
+                "label": "_owner",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_uint64": {
+            "label": "uint64",
+            "numberOfBytes": "8"
+          },
+          "t_array(t_address)dyn_storage": {
+            "label": "address[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint16)3_storage": {
+            "label": "uint16[3]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint256)3_storage": {
+            "label": "uint256[3]",
+            "numberOfBytes": "96"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)": {
+            "label": "mapping(uint256 => uint256[])",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(CatState)5585_storage)": {
+            "label": "mapping(uint256 => struct SmartCatProxyV3.CatState)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(MaxActionState)5638_storage)": {
+            "label": "mapping(uint256 => struct SmartCatProxyV3.MaxActionState)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_struct(CatState)5585_storage": {
+            "label": "struct SmartCatProxyV3.CatState",
+            "members": [
+              {
+                "label": "level",
+                "type": "t_uint8",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "numFeeds",
+                "type": "t_uint16",
+                "offset": 1,
+                "slot": "0"
+              },
+              {
+                "label": "lastFeed",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "numPlays",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "lastPlay",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "numCleans",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "lastClean",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "friends",
+                "type": "t_array(t_uint256)dyn_storage",
+                "offset": 0,
+                "slot": "6"
+              }
+            ],
+            "numberOfBytes": "224"
+          },
+          "t_struct(MaxActionState)5638_storage": {
+            "label": "struct SmartCatProxyV3.MaxActionState",
+            "members": [
+              {
+                "label": "firstActionTimestamp",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "count",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint16": {
+            "label": "uint16",
+            "numberOfBytes": "2"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        },
+        "namespaces": {
+          "erc7201:openzeppelin.storage.Ownable": [
+            {
+              "contract": "OwnableUpgradeable",
+              "label": "_owner",
+              "type": "t_address",
+              "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:24",
+              "offset": 0,
+              "slot": "0"
+            }
+          ],
+          "erc7201:openzeppelin.storage.Initializable": [
+            {
+              "contract": "Initializable",
+              "label": "_initialized",
+              "type": "t_uint64",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:69",
+              "offset": 0,
+              "slot": "0"
+            },
+            {
+              "contract": "Initializable",
+              "label": "_initializing",
+              "type": "t_bool",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:73",
+              "offset": 8,
+              "slot": "0"
+            }
+          ]
+        }
+      }
+    },
+    "b1f4c37b0597d364e8984b33d8e3c3644eace33568c7c745aeb1abb33308908d": {
+      "address": "0x0753d60c1C72e4b2D17256124a0867fAaF9230fF",
+      "txHash": "0x9886b3dc45798d99684e426e5973aa0a8b3b98ea7faaa3a4f258ad78df66e64f",
+      "layout": {
+        "solcVersion": "0.8.20",
+        "storage": [
+          {
+            "label": "nftContractAddress",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_address",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:16"
+          },
+          {
+            "label": "minIntervals",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)3_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:19"
+          },
+          {
+            "label": "minLevelUpScores",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_array(t_uint16)3_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:20"
+          },
+          {
+            "label": "maxLevel",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_uint8",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:22"
+          },
+          {
+            "label": "catStates",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_mapping(t_uint256,t_struct(CatState)5585_storage)",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:49"
+          },
+          {
+            "label": "playInvites",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:52"
+          },
+          {
+            "label": "catIds",
+            "offset": 0,
+            "slot": "8",
+            "type": "t_array(t_uint256)dyn_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:54"
+          },
+          {
+            "label": "levelAwards",
+            "offset": 0,
+            "slot": "9",
+            "type": "t_array(t_uint256)dyn_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:56"
+          },
+          {
+            "label": "pointBalances",
+            "offset": 0,
+            "slot": "10",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:57"
+          },
+          {
+            "label": "version",
+            "offset": 0,
+            "slot": "11",
+            "type": "t_uint16",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:66"
+          },
+          {
+            "label": "maxActionState",
+            "offset": 0,
+            "slot": "12",
+            "type": "t_mapping(t_uint256,t_struct(MaxActionState)5638_storage)",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:73"
+          },
+          {
+            "label": "maxActions",
+            "offset": 0,
+            "slot": "13",
+            "type": "t_uint16",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:75"
+          },
+          {
+            "label": "maxActionsInterval",
+            "offset": 0,
+            "slot": "14",
+            "type": "t_uint256",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:76"
+          },
+          {
+            "label": "authorisedProxyAddresses",
+            "offset": 0,
+            "slot": "15",
+            "type": "t_array(t_address)dyn_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:78"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_struct(InitializableStorage)45_storage": {
+            "label": "struct Initializable.InitializableStorage",
+            "members": [
+              {
+                "label": "_initialized",
+                "type": "t_uint64",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "_initializing",
+                "type": "t_bool",
+                "offset": 8,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_struct(OwnableStorage)14_storage": {
+            "label": "struct OwnableUpgradeable.OwnableStorage",
+            "members": [
+              {
+                "label": "_owner",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_uint64": {
+            "label": "uint64",
+            "numberOfBytes": "8"
+          },
+          "t_array(t_address)dyn_storage": {
+            "label": "address[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint16)3_storage": {
+            "label": "uint16[3]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint256)3_storage": {
+            "label": "uint256[3]",
+            "numberOfBytes": "96"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)": {
+            "label": "mapping(uint256 => uint256[])",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(CatState)5585_storage)": {
+            "label": "mapping(uint256 => struct SmartCatProxyV3.CatState)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(MaxActionState)5638_storage)": {
+            "label": "mapping(uint256 => struct SmartCatProxyV3.MaxActionState)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_struct(CatState)5585_storage": {
+            "label": "struct SmartCatProxyV3.CatState",
+            "members": [
+              {
+                "label": "level",
+                "type": "t_uint8",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "numFeeds",
+                "type": "t_uint16",
+                "offset": 1,
+                "slot": "0"
+              },
+              {
+                "label": "lastFeed",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "numPlays",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "lastPlay",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "numCleans",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "lastClean",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "friends",
+                "type": "t_array(t_uint256)dyn_storage",
+                "offset": 0,
+                "slot": "6"
+              }
+            ],
+            "numberOfBytes": "224"
+          },
+          "t_struct(MaxActionState)5638_storage": {
+            "label": "struct SmartCatProxyV3.MaxActionState",
+            "members": [
+              {
+                "label": "firstActionTimestamp",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "count",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint16": {
+            "label": "uint16",
+            "numberOfBytes": "2"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        },
+        "namespaces": {
+          "erc7201:openzeppelin.storage.Ownable": [
+            {
+              "contract": "OwnableUpgradeable",
+              "label": "_owner",
+              "type": "t_address",
+              "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:24",
+              "offset": 0,
+              "slot": "0"
+            }
+          ],
+          "erc7201:openzeppelin.storage.Initializable": [
+            {
+              "contract": "Initializable",
+              "label": "_initialized",
+              "type": "t_uint64",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:69",
+              "offset": 0,
+              "slot": "0"
+            },
+            {
+              "contract": "Initializable",
+              "label": "_initializing",
+              "type": "t_bool",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:73",
+              "offset": 8,
+              "slot": "0"
+            }
+          ]
+        }
+      }
+    },
+    "73155b3ec35b74196e85d4470c71fd0077d8b995a3da36e0668b8ddaf26000ca": {
+      "address": "0x6e47d3Cd0f0ef61cc0B8c7E402E7d13a9986F86A",
+      "txHash": "0xc42d2c010902c4f99fd8244ff740f4e28d4c8ca940e3e29f853728584b38323a",
+      "layout": {
+        "solcVersion": "0.8.20",
+        "storage": [
+          {
+            "label": "nftContractAddress",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_address",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:17"
+          },
+          {
+            "label": "minIntervals",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)3_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:20"
+          },
+          {
+            "label": "minLevelUpScores",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_array(t_uint16)3_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:21"
+          },
+          {
+            "label": "maxLevel",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_uint8",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:23"
+          },
+          {
+            "label": "catStates",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_mapping(t_uint256,t_struct(CatState)3466_storage)",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:51"
+          },
+          {
+            "label": "playInvites",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:54"
+          },
+          {
+            "label": "catIds",
+            "offset": 0,
+            "slot": "8",
+            "type": "t_array(t_uint256)dyn_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:56"
+          },
+          {
+            "label": "levelAwards",
+            "offset": 0,
+            "slot": "9",
+            "type": "t_array(t_uint256)dyn_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:58"
+          },
+          {
+            "label": "pointBalances",
+            "offset": 0,
+            "slot": "10",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:59"
+          },
+          {
+            "label": "version",
+            "offset": 0,
+            "slot": "11",
+            "type": "t_uint16",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:68"
+          },
+          {
+            "label": "maxActionState",
+            "offset": 0,
+            "slot": "12",
+            "type": "t_mapping(t_uint256,t_struct(MaxActionState)3521_storage)",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:75"
+          },
+          {
+            "label": "maxActions",
+            "offset": 0,
+            "slot": "13",
+            "type": "t_uint16",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:77"
+          },
+          {
+            "label": "maxActionsInterval",
+            "offset": 0,
+            "slot": "14",
+            "type": "t_uint256",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:78"
+          },
+          {
+            "label": "authorisedProxyAddresses",
+            "offset": 0,
+            "slot": "15",
+            "type": "t_array(t_address)dyn_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:80"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_struct(InitializableStorage)45_storage": {
+            "label": "struct Initializable.InitializableStorage",
+            "members": [
+              {
+                "label": "_initialized",
+                "type": "t_uint64",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "_initializing",
+                "type": "t_bool",
+                "offset": 8,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_struct(OwnableStorage)14_storage": {
+            "label": "struct OwnableUpgradeable.OwnableStorage",
+            "members": [
+              {
+                "label": "_owner",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_uint64": {
+            "label": "uint64",
+            "numberOfBytes": "8"
+          },
+          "t_array(t_address)dyn_storage": {
+            "label": "address[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint16)3_storage": {
+            "label": "uint16[3]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint256)3_storage": {
+            "label": "uint256[3]",
+            "numberOfBytes": "96"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)": {
+            "label": "mapping(uint256 => uint256[])",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(CatState)3466_storage)": {
+            "label": "mapping(uint256 => struct SmartCatProxyV3.CatState)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(MaxActionState)3521_storage)": {
+            "label": "mapping(uint256 => struct SmartCatProxyV3.MaxActionState)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_struct(CatState)3466_storage": {
+            "label": "struct SmartCatProxyV3.CatState",
+            "members": [
+              {
+                "label": "level",
+                "type": "t_uint8",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "numFeeds",
+                "type": "t_uint16",
+                "offset": 1,
+                "slot": "0"
+              },
+              {
+                "label": "lastFeed",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "numPlays",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "lastPlay",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "numCleans",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "lastClean",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "friends",
+                "type": "t_array(t_uint256)dyn_storage",
+                "offset": 0,
+                "slot": "6"
+              }
+            ],
+            "numberOfBytes": "224"
+          },
+          "t_struct(MaxActionState)3521_storage": {
+            "label": "struct SmartCatProxyV3.MaxActionState",
+            "members": [
+              {
+                "label": "firstActionTimestamp",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "count",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint16": {
+            "label": "uint16",
+            "numberOfBytes": "2"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        },
+        "namespaces": {
+          "erc7201:openzeppelin.storage.Ownable": [
+            {
+              "contract": "OwnableUpgradeable",
+              "label": "_owner",
+              "type": "t_address",
+              "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:24",
+              "offset": 0,
+              "slot": "0"
+            }
+          ],
+          "erc7201:openzeppelin.storage.Initializable": [
+            {
+              "contract": "Initializable",
+              "label": "_initialized",
+              "type": "t_uint64",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:69",
+              "offset": 0,
+              "slot": "0"
+            },
+            {
+              "contract": "Initializable",
+              "label": "_initializing",
+              "type": "t_bool",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:73",
+              "offset": 8,
+              "slot": "0"
+            }
+          ]
+        }
+      }
+    },
+    "6a0657b9ad0987891975714d3e04895b3754d875367d2ec0dc83fd7d9156cb39": {
+      "address": "0x91dB120a681c0063fB745008D2E950AB995e0772",
+      "txHash": "0x5f2a03cb4cb8b3eb44b6e60b4a7fd8e01b8495899e2a5796e062a7e6468e1e00",
+      "layout": {
+        "solcVersion": "0.8.20",
+        "storage": [
+          {
+            "label": "nftContractAddress",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_address",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:17"
+          },
+          {
+            "label": "minIntervals",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)3_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:20"
+          },
+          {
+            "label": "minLevelUpScores",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_array(t_uint16)3_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:21"
+          },
+          {
+            "label": "maxLevel",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_uint8",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:23"
+          },
+          {
+            "label": "catStates",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_mapping(t_uint256,t_struct(CatState)6910_storage)",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:51"
+          },
+          {
+            "label": "playInvites",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:54"
+          },
+          {
+            "label": "catIds",
+            "offset": 0,
+            "slot": "8",
+            "type": "t_array(t_uint256)dyn_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:56"
+          },
+          {
+            "label": "levelAwards",
+            "offset": 0,
+            "slot": "9",
+            "type": "t_array(t_uint256)dyn_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:58"
+          },
+          {
+            "label": "pointBalances",
+            "offset": 0,
+            "slot": "10",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:59"
+          },
+          {
+            "label": "version",
+            "offset": 0,
+            "slot": "11",
+            "type": "t_uint16",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:76"
+          },
+          {
+            "label": "maxActionState",
+            "offset": 0,
+            "slot": "12",
+            "type": "t_mapping(t_uint256,t_struct(MaxActionState)6975_storage)",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:83"
+          },
+          {
+            "label": "maxActions",
+            "offset": 0,
+            "slot": "13",
+            "type": "t_uint16",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:85"
+          },
+          {
+            "label": "maxActionsInterval",
+            "offset": 0,
+            "slot": "14",
+            "type": "t_uint256",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:86"
+          },
+          {
+            "label": "authorisedProxyAddresses",
+            "offset": 0,
+            "slot": "15",
+            "type": "t_array(t_address)dyn_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:88"
+          },
+          {
+            "label": "pendingInvites",
+            "offset": 0,
+            "slot": "16",
+            "type": "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:93"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_struct(InitializableStorage)45_storage": {
+            "label": "struct Initializable.InitializableStorage",
+            "members": [
+              {
+                "label": "_initialized",
+                "type": "t_uint64",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "_initializing",
+                "type": "t_bool",
+                "offset": 8,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_struct(OwnableStorage)14_storage": {
+            "label": "struct OwnableUpgradeable.OwnableStorage",
+            "members": [
+              {
+                "label": "_owner",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_uint64": {
+            "label": "uint64",
+            "numberOfBytes": "8"
+          },
+          "t_array(t_address)dyn_storage": {
+            "label": "address[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint16)3_storage": {
+            "label": "uint16[3]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint256)3_storage": {
+            "label": "uint256[3]",
+            "numberOfBytes": "96"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)": {
+            "label": "mapping(uint256 => uint256[])",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(CatState)6910_storage)": {
+            "label": "mapping(uint256 => struct SmartCatProxyV3.CatState)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(MaxActionState)6975_storage)": {
+            "label": "mapping(uint256 => struct SmartCatProxyV3.MaxActionState)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_struct(CatState)6910_storage": {
+            "label": "struct SmartCatProxyV3.CatState",
+            "members": [
+              {
+                "label": "level",
+                "type": "t_uint8",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "numFeeds",
+                "type": "t_uint16",
+                "offset": 1,
+                "slot": "0"
+              },
+              {
+                "label": "lastFeed",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "numPlays",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "lastPlay",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "numCleans",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "lastClean",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "friends",
+                "type": "t_array(t_uint256)dyn_storage",
+                "offset": 0,
+                "slot": "6"
+              }
+            ],
+            "numberOfBytes": "224"
+          },
+          "t_struct(MaxActionState)6975_storage": {
+            "label": "struct SmartCatProxyV3.MaxActionState",
+            "members": [
+              {
+                "label": "firstActionTimestamp",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "count",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint16": {
+            "label": "uint16",
+            "numberOfBytes": "2"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        },
+        "namespaces": {
+          "erc7201:openzeppelin.storage.Ownable": [
+            {
+              "contract": "OwnableUpgradeable",
+              "label": "_owner",
+              "type": "t_address",
+              "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:24",
+              "offset": 0,
+              "slot": "0"
+            }
+          ],
+          "erc7201:openzeppelin.storage.Initializable": [
+            {
+              "contract": "Initializable",
+              "label": "_initialized",
+              "type": "t_uint64",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:69",
+              "offset": 0,
+              "slot": "0"
+            },
+            {
+              "contract": "Initializable",
+              "label": "_initializing",
+              "type": "t_bool",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:73",
+              "offset": 8,
+              "slot": "0"
+            }
+          ]
+        }
+      }
+    },
+    "572e56860db56df1d519044708fcf59563eb12c3ec1cf9bcce55d80c682742f2": {
+      "address": "0xb1db1005ee017ad1235bA3f7dA4BDc1b83f4f108",
+      "txHash": "0x6e0ce430ea030f2df993c1b74e4d6dd38e8ebe162ab5ad5039b8b2bfb7b6298a",
+      "layout": {
+        "solcVersion": "0.8.20",
+        "storage": [
+          {
+            "label": "nftContractAddress",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_address",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:17"
+          },
+          {
+            "label": "minIntervals",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)3_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:20"
+          },
+          {
+            "label": "minLevelUpScores",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_array(t_uint16)3_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:21"
+          },
+          {
+            "label": "maxLevel",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_uint8",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:23"
+          },
+          {
+            "label": "catStates",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_mapping(t_uint256,t_struct(CatState)3466_storage)",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:51"
+          },
+          {
+            "label": "playInvites",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:54"
+          },
+          {
+            "label": "catIds",
+            "offset": 0,
+            "slot": "8",
+            "type": "t_array(t_uint256)dyn_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:56"
+          },
+          {
+            "label": "levelAwards",
+            "offset": 0,
+            "slot": "9",
+            "type": "t_array(t_uint256)dyn_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:58"
+          },
+          {
+            "label": "pointBalances",
+            "offset": 0,
+            "slot": "10",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:59"
+          },
+          {
+            "label": "version",
+            "offset": 0,
+            "slot": "11",
+            "type": "t_uint16",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:76"
+          },
+          {
+            "label": "maxActionState",
+            "offset": 0,
+            "slot": "12",
+            "type": "t_mapping(t_uint256,t_struct(MaxActionState)3531_storage)",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:83"
+          },
+          {
+            "label": "maxActions",
+            "offset": 0,
+            "slot": "13",
+            "type": "t_uint16",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:85"
+          },
+          {
+            "label": "maxActionsInterval",
+            "offset": 0,
+            "slot": "14",
+            "type": "t_uint256",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:86"
+          },
+          {
+            "label": "authorisedProxyAddresses",
+            "offset": 0,
+            "slot": "15",
+            "type": "t_array(t_address)dyn_storage",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:88"
+          },
+          {
+            "label": "pendingInvites",
+            "offset": 0,
+            "slot": "16",
+            "type": "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)",
+            "contract": "SmartCatProxyV3",
+            "src": "contracts/SmartCatProxyV3.sol:93"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_struct(InitializableStorage)45_storage": {
+            "label": "struct Initializable.InitializableStorage",
+            "members": [
+              {
+                "label": "_initialized",
+                "type": "t_uint64",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "_initializing",
+                "type": "t_bool",
+                "offset": 8,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_struct(OwnableStorage)14_storage": {
+            "label": "struct OwnableUpgradeable.OwnableStorage",
+            "members": [
+              {
+                "label": "_owner",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_uint64": {
+            "label": "uint64",
+            "numberOfBytes": "8"
+          },
+          "t_array(t_address)dyn_storage": {
+            "label": "address[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint16)3_storage": {
+            "label": "uint16[3]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint256)3_storage": {
+            "label": "uint256[3]",
+            "numberOfBytes": "96"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)": {
+            "label": "mapping(uint256 => uint256[])",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(CatState)3466_storage)": {
+            "label": "mapping(uint256 => struct SmartCatProxyV3.CatState)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(MaxActionState)3531_storage)": {
+            "label": "mapping(uint256 => struct SmartCatProxyV3.MaxActionState)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_struct(CatState)3466_storage": {
+            "label": "struct SmartCatProxyV3.CatState",
+            "members": [
+              {
+                "label": "level",
+                "type": "t_uint8",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "numFeeds",
+                "type": "t_uint16",
+                "offset": 1,
+                "slot": "0"
+              },
+              {
+                "label": "lastFeed",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "numPlays",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "lastPlay",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "numCleans",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "lastClean",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "friends",
+                "type": "t_array(t_uint256)dyn_storage",
+                "offset": 0,
+                "slot": "6"
+              }
+            ],
+            "numberOfBytes": "224"
+          },
+          "t_struct(MaxActionState)3531_storage": {
+            "label": "struct SmartCatProxyV3.MaxActionState",
+            "members": [
+              {
+                "label": "firstActionTimestamp",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "count",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint16": {
+            "label": "uint16",
+            "numberOfBytes": "2"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        },
+        "namespaces": {
+          "erc7201:openzeppelin.storage.Ownable": [
+            {
+              "contract": "OwnableUpgradeable",
+              "label": "_owner",
+              "type": "t_address",
+              "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:24",
+              "offset": 0,
+              "slot": "0"
+            }
+          ],
+          "erc7201:openzeppelin.storage.Initializable": [
+            {
+              "contract": "Initializable",
+              "label": "_initialized",
+              "type": "t_uint64",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:69",
+              "offset": 0,
+              "slot": "0"
+            },
+            {
+              "contract": "Initializable",
+              "label": "_initializing",
+              "type": "t_bool",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:73",
+              "offset": 8,
+              "slot": "0"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

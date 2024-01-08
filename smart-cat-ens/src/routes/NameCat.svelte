@@ -1,97 +1,96 @@
 <script lang="ts">
-	// import { Contract, JsonRpcProvider, Network } from 'ethers';
-	// import { ethers } from 'ethers';
 	import context from '../lib/context';
 	import { getTokenBoundClientInstance, getPreCalculatedTokenBoundAddress } from './../lib/utils';
 
 	let token;
 	let tba: string | undefined;
 	let catName: string | undefined;
-	let debounceTimer: any;
 	let isCatNameAvailable: boolean | undefined;
 	let isCatNameAvailablePending: boolean | undefined;
-	let apiRequestStatus: any;
+	let apiRequestStatus: 'success' | 'error' | undefined;
+	let debounceTimer: number | undefined;
+	let debouncePendingTimer: number | undefined;
 
 	context.data.subscribe(async (value) => {
 		if (!value.token) return;
 
 		token = value.token;
 		const tbaClient = getTokenBoundClientInstance(1);
-		tba = await getPreCalculatedTokenBoundAddress(
-			tbaClient,
-			// @ts-ignore
-			token.contractAddress,
-			// @ts-ignore
-			token.tokenId
-		);
+		// @ts-ignore
+		tba = await getPreCalculatedTokenBoundAddress(tbaClient, token.contractAddress, token.tokenId);
 	});
 
 	// @ts-ignore
 	window.onConfirm = async () => {
-		if (!catName) {
-			alert('Enter the name then try again');
-			return;
-		}
-		if (!isCatNameAvailable) {
-			alert(`Sorry, ${catName} has been taken. Please try another name.`);
-			return;
-		}
 		// @ts-ignore
 		const challenge = `Registering your catId ${token.tokenId} name to ${catName}`;
 		// @ts-ignore
 		web3.personal.sign({ data: challenge }, async function (error, signature) {
-			if (error) alert('Something went wrong. Please try again.');
-			const { name } = await applySubNameENS(
-				'https://scriptproxy.smartokenlabs.com:8083/',
+			if (error) {
+				alert('Something went wrong. Please try again.');
+				return;
+			}
+			await applySubNameENS(
+				'https://scriptproxy.smarttokenlabs.com:8083',
 				catName,
-				// @ts-ignore
 				token.tokenId,
-				// @ts-ignore
 				signature
 			);
 		});
 	};
 
-	async function applySubNameENS(url: string, tokenId: string, signature: string) {
+	async function applySubNameENS(
+		url: string,
+		catName: string | undefined,
+		tokenId: string,
+		signature: string
+	) {
 		try {
-			const response = await fetch(url, {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ tokenId, signature })
+			const response = await fetch(`${url}/${catName}/${tokenId}/${tba}/${signature}`, {
+				method: 'POST'
 			});
 			if (!response.ok) {
 				throw new Error(`HTTP error! Status: ${response.status}`);
 			}
-			const result = await response.json();
 			apiRequestStatus = 'success';
-			return result;
+			console.log('response data', response.text());
+			return response;
 		} catch (error) {
 			apiRequestStatus = 'error';
-			console.error('Error during PUT request:', error);
+			console.error('Error during POST request:', error);
 		}
 	}
 
 	const checkCatNameAvailability = async (event: Event) => {
 		// @ts-ignore
-		catName = event.target.value.replace(/\s+/g, '-').replace(/-{2,}/g, '-');
-
-		setTimeout(() => {
+		catName = event.target.value.replace(/\s+/g, '-').replace(/-{2,}/g, '').replace(/^-+/g, '');
+		isCatNameAvailablePending = undefined;
+		isCatNameAvailable = undefined;
+		clearTimeout(debounceTimer);
+		clearTimeout(debouncePendingTimer);
+		// @ts-ignore
+		debouncePendingTimer = setTimeout(() => {
 			isCatNameAvailablePending = true;
 		}, 500);
-		clearTimeout(debounceTimer);
+		// @ts-ignore
 		debounceTimer = setTimeout(async () => {
-			// TODO integrate the actual ENDPOINT below:
-			// try {
-			// const applyName = await fetch('POST', `https://scriptproxy.smartokenlabs.com:8083/check/${catName}`
-			// 	const response = await fetch(`your_api_endpoint/${catName}`);
-			// 	const data = await response.json();
-			// 	isCatNameAvailable = data.available;
-			// } catch (error) {
-			// 	console.error('Error checking cat name availability:', error);
-			// }
-			isCatNameAvailable = false;
-			isCatNameAvailablePending = false;
-		}, 1000); // Adjust the debounce delay as needed
+			if (!catName?.length) {
+				isCatNameAvailablePending = undefined;
+				isCatNameAvailable = undefined;
+				return;
+			}
+			try {
+				const getIsCatNameAvailable = await fetch(
+					`https://scriptproxy.smarttokenlabs.com:8083/checkname/${catName}`
+				);
+				const responseText = await getIsCatNameAvailable.text();
+				isCatNameAvailable = responseText === 'available';
+				isCatNameAvailablePending = false;
+			} catch (error) {
+				console.error('Error checking cat name availability:', error);
+				isCatNameAvailable = false;
+			}
+		}, 1000);
 	};
 </script>
 
@@ -317,6 +316,7 @@
 					style="border: 2px solid blue; border-radius: 20px; padding: 10px 14px; width:100%; margin-right: 9px"
 					bind:value={catName}
 					on:input={(event) => checkCatNameAvailability(event)}
+					disabled={apiRequestStatus === 'success'}
 				/>
 			</div>
 			{#if isCatNameAvailablePending === true}

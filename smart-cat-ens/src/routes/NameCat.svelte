@@ -1,81 +1,98 @@
 <script lang="ts">
-	import { Contract, JsonRpcProvider, Network } from 'ethers';
+	// import { Contract, JsonRpcProvider, Network } from 'ethers';
+	// import { ethers } from 'ethers';
 	import context from '../lib/context';
 	import { getTokenBoundClientInstance, getPreCalculatedTokenBoundAddress } from './../lib/utils';
 
 	let token;
+	let tba: string | undefined;
+	let catName: string | undefined;
+	let debounceTimer: any;
+	let isCatNameAvailable: boolean | undefined;
+	let isCatNameAvailablePending: boolean | undefined;
+	let apiRequestStatus: any;
 
 	context.data.subscribe(async (value) => {
 		if (!value.token) return;
 
 		token = value.token;
-	});
-
-	// @ts-ignore
-	window.onConfirm = async () => {
-		const inputValueEl = document.getElementById('cat-name') as HTMLInputElement;
-		const catName = inputValueEl.value;
-		if (!catName) alert('Enter the name then try again');
-		// TODO check if the name is unique
-		// Method to check here... success.. else...
-		// alert('This name has been taken, please choose another name for your cat.');
 		const tbaClient = getTokenBoundClientInstance(1);
-		const tba = await getPreCalculatedTokenBoundAddress(
+		tba = await getPreCalculatedTokenBoundAddress(
 			tbaClient,
 			// @ts-ignore
 			token.contractAddress,
 			// @ts-ignore
 			token.tokenId
 		);
+	});
+
+	// @ts-ignore
+	window.onConfirm = async () => {
+		if (!catName) {
+			alert('Enter the name then try again');
+			return;
+		}
+		if (!isCatNameAvailable) {
+			alert(`Sorry, ${catName} has been taken. Please try another name.`);
+			return;
+		}
 		// @ts-ignore
-		const challenge = `Registering your cats name to ${catName}. Certificate id ${tba}`;
+		const challenge = `Registering your catId ${token.tokenId} name to ${catName}`;
 		// @ts-ignore
-		web3.personal.sign({ data: challenge }, function (error, value) {
+		web3.personal.sign({ data: challenge }, async function (error, signature) {
 			if (error) alert('Something went wrong. Please try again.');
-			// @ts-expect-error chainID embedded as global variable
-			const network = new Network('polygon', chainID);
-			// @ts-expect-error rpcURL embedded as global variable
-			const provider = new JsonRpcProvider(rpcURL, network, {
-				staticNetwork: network
-			});
-			// TODO's
-			// 1. Create RPC request to Smart Cats ENS Resolver to resolve API URL
-			// 2. PUT: ENS Subname
-			// 2. applySubNameENS(apiURL, { name, tba, sig, tokenId, tokenAddr});
-			// 3. Success: Change UI to say it worked and close the window (window.close()).
-			// 4. Fail: Change the UI to instruct the user to try again.
+			const { name } = await applySubNameENS(
+				'https://scriptproxy.smartokenlabs.com:8083/',
+				catName,
+				// @ts-ignore
+				token.tokenId,
+				// @ts-ignore
+				signature
+			);
 		});
 	};
 
-	async function applySubNameENS(
-		url: string,
-		data: {
-			name: string;
-			tba: string;
-			sig: string;
-			tokenId: string;
-			tokenAddr: string;
-		}
-	) {
+	async function applySubNameENS(url: string, tokenId: string, signature: string) {
 		try {
 			const response = await fetch(url, {
-				method: 'PUT',
+				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(data)
+				body: JSON.stringify({ tokenId, signature })
 			});
-
 			if (!response.ok) {
 				throw new Error(`HTTP error! Status: ${response.status}`);
 			}
-
 			const result = await response.json();
-			console.log('PUT Request Successful:', result);
+			apiRequestStatus = 'success';
 			return result;
 		} catch (error) {
-			console.error('Error during PUT request:', error.message);
-			throw error;
+			apiRequestStatus = 'error';
+			console.error('Error during PUT request:', error);
 		}
 	}
+
+	const checkCatNameAvailability = async (event: Event) => {
+		// @ts-ignore
+		catName = event.target.value.replace(/\s+/g, '-').replace(/-{2,}/g, '-');
+
+		setTimeout(() => {
+			isCatNameAvailablePending = true;
+		}, 500);
+		clearTimeout(debounceTimer);
+		debounceTimer = setTimeout(async () => {
+			// TODO integrate the actual ENDPOINT below:
+			// try {
+			// const applyName = await fetch('POST', `https://scriptproxy.smartokenlabs.com:8083/check/${catName}`
+			// 	const response = await fetch(`your_api_endpoint/${catName}`);
+			// 	const data = await response.json();
+			// 	isCatNameAvailable = data.available;
+			// } catch (error) {
+			// 	console.error('Error checking cat name availability:', error);
+			// }
+			isCatNameAvailable = false;
+			isCatNameAvailablePending = false;
+		}, 1000); // Adjust the debounce delay as needed
+	};
 </script>
 
 <div>
@@ -298,8 +315,63 @@
 					id="cat-name"
 					placeholder="Add a name here"
 					style="border: 2px solid blue; border-radius: 20px; padding: 10px 14px; width:100%; margin-right: 9px"
+					bind:value={catName}
+					on:input={(event) => checkCatNameAvailability(event)}
 				/>
 			</div>
+			{#if isCatNameAvailablePending === true}
+				<div
+					class="fade-in-out"
+					style="    font-size: 14px; padding: 12px 4px; border-radius: 20px;"
+				>
+					<p>Checking if name is available...</p>
+				</div>
+			{/if}
+			{#if apiRequestStatus === 'error'}
+				<div style="font-size: 14px; padding: 12px 4px 0 4px; border-radius: 20px;">
+					<p>
+						❌ Oh, furballs! We encountered a hiccup in the digital litter box. There was an
+						unexpected error. Please give it another go, and if the issue persists, try again later.
+					</p>
+				</div>
+			{/if}
+			{#if isCatNameAvailable === true && !isCatNameAvailablePending}
+				{#if apiRequestStatus !== 'success'}
+					<div style="font-size: 14px; padding: 12px 4px; border-radius: 20px;">
+						<p>✅ {catName} is available</p>
+					</div>
+				{/if}
+				{#if apiRequestStatus === 'success'}
+					<div style="font-size: 14px; padding: 12px 4px; border-radius: 20px;">
+						<p>
+							Your Cat has been successfully and uniquely named {catName} 🎉
+						</p>
+					</div>
+				{/if}
+				<div style="font-size: 14px; padding: 16px 18px; background: #fff4e0; border-radius: 20px;">
+					<p>Cat Name: {catName}</p>
+					<p>Cat Address: {tba}</p>
+					{#if apiRequestStatus === 'success'}
+						<p style="margin-top: 12px">
+							Details: This action has assigned the name {catName} as an off chain ENS sub record to
+							your cats TokenBound Address. Enabled via ENS ERC-3668, TokenBound ERC-6551 and Smart Layer
+							ERC-5169.
+						</p>
+					{/if}
+					{#if apiRequestStatus !== 'success'}
+						<p style="margin-top: 12px">
+							Details: This action will assign the name {catName} as an off chain ENS sub record to your
+							cats TokenBound Address. Enabled via ENS ERC-3668, TokenBound ERC-6551 and Smart Layer
+							ERC-5169.
+						</p>
+					{/if}
+				</div>
+			{/if}
+			{#if isCatNameAvailable === false && !isCatNameAvailablePending}
+				<div style="font-size: 14px; padding: 12px 4px; border-radius: 20px;">
+					<p>Sorry, {catName} has been taken. Please try another name.</p>
+				</div>
+			{/if}
 		</div>
 	{/if}
 </div>

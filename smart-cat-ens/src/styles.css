@@ -36,3 +36,16 @@ p.light {
 	width: 100%;
 	height: 100%;
 }
+
+.fade-in-out {
+	animation: fadeInOut 1s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+	0%, 100% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+}

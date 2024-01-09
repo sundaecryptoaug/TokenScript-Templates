@@ -1,7 +1,8 @@
 <script lang="ts">
 	import context from '../lib/context';
 	import { getTokenBoundClientInstance, getPreCalculatedTokenBoundAddress } from './../lib/utils';
-	import { getOwnerAddressFromResolver } from './../lib/nameResolver';
+	//import { getOwnerAddressFromResolver } from './../lib/nameResolver';
+	import { ethers } from 'ethers';
 
 	let token;
 	let tba: string | undefined;
@@ -62,6 +63,128 @@
 		}
 	}
 
+	// Define the ENS resolver contract address for now, will add dynamic resolution if needed
+	const ensResolverAddress = '0x4dBFD41eA7639eB5FbC95e4D2Ea63369e7Be143f';
+
+	const returnAbi = [
+		{
+			constant: false,
+			inputs: [
+				{
+					name: 'sender',
+					type: 'address'
+				},
+				{
+					name: 'urls',
+					type: 'string[]'
+				},
+				{
+					name: 'callData',
+					type: 'bytes'
+				},
+				{
+					name: 'callbackFunction',
+					type: 'bytes4'
+				},
+				{
+					name: 'extraData',
+					type: 'bytes'
+				}
+			],
+			name: 'OffchainLookup',
+			outputs: [],
+			payable: false,
+			stateMutability: 'nonpayable',
+			type: 'function'
+		}
+	];
+
+	const decodeAbi = [
+		{
+			constant: true,
+			inputs: [],
+			name: 'decode',
+			outputs: [
+				{
+					name: 'address',
+					type: 'bytes'
+				},
+				{
+					name: 'time',
+					type: 'uint64'
+				},
+				{
+					name: 'sig',
+					type: 'bytes'
+				}
+			],
+			payable: false,
+			stateMutability: 'view',
+			type: 'function'
+		}
+	];
+
+	const ensAddress = '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e';
+
+	async function resolve(_name: string): Promise<string> {
+		const name = _name + '.smartcat.eth';
+
+		const provider = new ethers.JsonRpcProvider('https://ethereum-goerli.publicnode.com', {
+			chainId: 5,
+			name: 'goerli',
+			ensAddress
+		});
+
+		const namehash = ethers.namehash(name);
+		const dnsEncode = ethers.dnsEncode(name);
+		const funcEncode = '0x3b3b57de' + namehash.substring(2);
+
+		const catResolver = new ethers.Contract(
+			ensResolverAddress,
+			['function resolve(bytes name, bytes data) view returns (bytes)'],
+			provider
+		);
+
+		//call, get error
+		try {
+			const resolverTx = await catResolver.resolve(dnsEncode, funcEncode);
+			console.log(resolverTx);
+		} catch (error) {
+			//break down the data
+			const iface = new ethers.Interface(returnAbi);
+			// @ts-ignore
+			const decoded = iface.decodeFunctionData('OffchainLookup', error.data);
+
+			//format URL:
+			const callUrl = decoded.urls[0]
+				.replace('{sender}', decoded.sender)
+				.replace('{data}', decoded.callData);
+
+			try {
+				const response = await fetch(callUrl);
+
+				if (response.ok) {
+					const data = await response.json();
+
+					//split up the response data
+					const decode = new ethers.Interface(decodeAbi);
+					const decoded = decode.decodeFunctionResult('decode', data.data);
+
+					var truncated = decoded.address;
+					if (decoded.address.length > 42) {
+						truncated = '0x' + decoded.address.substring(decoded.address.length - 40);
+					}
+
+					return ethers.getAddress(truncated);
+				}
+			} catch (callError) {
+				// nop, expected
+			}
+		}
+
+		return '0x0000000000000000000000000000000000000000';
+	}
+
 	const checkCatNameAvailability = async (event: Event) => {
 		// @ts-ignore
 		catName = event.target.value.replace(/\s+/g, '-').replace(/-{2,}/g, '').replace(/^-+/g, '');
@@ -90,14 +213,14 @@
 				// resolver solution
 				console.log('testing.....');
 				// rpc solution
-				const getIsCatNameAvailable = await getOwnerAddressFromResolver(catName);
+				const getIsCatNameAvailable: string = await resolve(catName);
 				// @ts-ignore
-				console.log('getIsCatNameAvailable......', getIsCatNameAvailable.toString());
+				console.log('getIsCatNameAvailable......', getIsCatNameAvailable);
 				// UserAddress: 0xcA1167915584462449EE5b4Ea51c37fE81eCDCCD
 				// @ts-ignore
-				const availableResolverStr = 'UserAddress: 0x0000000000000000000000000000000000000000';
+				const availableResolverStr = '0x0000000000000000000000000000000000000000';
 				// @ts-ignore
-				isCatNameAvailable = getIsCatNameAvailable.toString() === availableResolverStr;
+				isCatNameAvailable = getIsCatNameAvailable === availableResolverStr;
 				isCatNameAvailablePending = false;
 			} catch (error) {
 				console.log('testing err.....');

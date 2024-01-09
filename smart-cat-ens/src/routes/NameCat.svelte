@@ -32,12 +32,19 @@
 				alert('Something went wrong. Please try again.');
 				return;
 			}
-			await applySubNameENS(
+			const apiStatus = await applySubNameENS(
 				'https://scriptproxy.smarttokenlabs.com:8083',
 				catName,
 				token.tokenId,
 				signature
 			);
+
+			if (apiStatus == "pass") {
+				window.close(); //TODO: Find out how to display tick
+			} else {
+				//throw Error("fail"); //display cross/fail
+				window.close();
+			}
 		});
 	};
 
@@ -46,7 +53,7 @@
 		catName: string | undefined,
 		tokenId: string,
 		signature: string
-	) {
+	): Promise<string> {
 		try {
 			const response = await fetch(`${url}/${catName}/${tokenId}/${tba}/${signature}`, {
 				method: 'POST'
@@ -55,12 +62,15 @@
 				throw new Error(`HTTP error! Status: ${response.status}`);
 			}
 			apiRequestStatus = 'success';
-			console.log('response data', response.text());
-			return response;
+			const responseText = response.text();
+			console.log('response data', responseText);
+			return responseText;
 		} catch (error) {
 			apiRequestStatus = 'error';
 			console.error('Error during POST request:', error);
 		}
+
+		return "fail";
 	}
 
 	// Define the ENS resolver contract address for now, will add dynamic resolution if needed

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import context from '../lib/context';
 	import { getTokenBoundClientInstance, getPreCalculatedTokenBoundAddress } from './../lib/utils';
+	import { getOwnerAddressFromResolver } from './../lib/nameResolver';
 
 	let token;
 	let tba: string | undefined;
@@ -80,13 +81,26 @@
 				return;
 			}
 			try {
-				const getIsCatNameAvailable = await fetch(
-					`https://scriptproxy.smarttokenlabs.com:8083/checkname/${catName}`
-				);
-				const responseText = await getIsCatNameAvailable.text();
-				isCatNameAvailable = responseText === 'available';
+				// db solution
+				// const getIsCatNameAvailable = await fetch(
+				// 	`https://scriptproxy.smarttokenlabs.com:8083/checkname/${catName}`
+				// );
+				// const responseText = await getIsCatNameAvailable.text();
+
+				// resolver solution
+				console.log('testing.....');
+				// rpc solution
+				const getIsCatNameAvailable = await getOwnerAddressFromResolver(catName);
+				// @ts-ignore
+				console.log('getIsCatNameAvailable......', getIsCatNameAvailable.toString());
+				// UserAddress: 0xcA1167915584462449EE5b4Ea51c37fE81eCDCCD
+				// @ts-ignore
+				const availableResolverStr = 'UserAddress: 0x0000000000000000000000000000000000000000';
+				// @ts-ignore
+				isCatNameAvailable = getIsCatNameAvailable.toString() === availableResolverStr;
 				isCatNameAvailablePending = false;
 			} catch (error) {
+				console.log('testing err.....');
 				console.error('Error checking cat name availability:', error);
 				isCatNameAvailable = false;
 			}

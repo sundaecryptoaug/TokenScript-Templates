@@ -108,7 +108,7 @@ export const getOwnerAddressFromResolver = async (_name: string) => {
           const decode = new ethers.Interface(decodeAbi);
           const decoded = decode.decodeFunctionResult('decode', data.data);
 
-          return decoded.address; // ethers.getAddress(hexStripZeros(decoded.address));
+          return ethers.getAddress(hexStripZeros(decoded.address));
         }
       } catch (callError) {
         // nop, expected

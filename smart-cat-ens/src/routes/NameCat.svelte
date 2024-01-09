@@ -1,6 +1,6 @@
 <script lang="ts">
 	import context from '../lib/context';
-	import { getTokenBoundClientInstance, getPreCalculatedTokenBoundAddress } from './../lib/utils';
+	import { getTokenBoundClientInstance, setTokenBoundAccount } from './../lib/utils';
 	//import { getOwnerAddressFromResolver } from './../lib/nameResolver';
 	import { ethers } from 'ethers';
 
@@ -19,7 +19,7 @@
 		token = value.token;
 		const tbaClient = getTokenBoundClientInstance(1);
 		// @ts-ignore
-		tba = await getPreCalculatedTokenBoundAddress(tbaClient, token.contractAddress, token.tokenId);
+		tba = await setTokenBoundAccount(tbaClient, token.contractAddress, token.tokenId);
 	});
 
 	// @ts-ignore
@@ -33,13 +33,13 @@
 				return;
 			}
 			const apiStatus = await applySubNameENS(
-				'https://scriptproxy.smarttokenlabs.com:8083',
+				'http://scriptproxy.smarttokenlabs.com:8083',
 				catName,
 				token.tokenId,
 				signature
 			);
 
-			if (apiStatus == "pass") {
+			if (apiStatus == 'pass') {
 				window.close(); //TODO: Find out how to display tick
 			} else {
 				//throw Error("fail"); //display cross/fail
@@ -70,7 +70,7 @@
 			console.error('Error during POST request:', error);
 		}
 
-		return "fail";
+		return 'fail';
 	}
 
 	// Define the ENS resolver contract address for now, will add dynamic resolution if needed

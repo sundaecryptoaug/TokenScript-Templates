@@ -44,13 +44,13 @@ export const setTokenBoundCollectables = async (chainId: string, tba: string) =>
   }
 }
 
-export const getPreCalculatedTokenBoundAddress = async (tokenboundClient: any, collectionAddress: string, tokenId: string) => {
-  const preparedAccount = await tokenboundClient.prepareCreateAccount({
-    tokenContract: collectionAddress,
-    tokenId: tokenId
-  })
-  return preparedAccount.to;
-}
+// export const getPreCalculatedTokenBoundAddress = async (tokenboundClient: any, collectionAddress: string, tokenId: string) => {
+//   const tokenboundAccount = tokenboundClient.getAccount({
+//     tokenContract: collectionAddress,
+//     tokenId: tokenId
+//   })
+//   return tokenboundAccount;
+// }
 
 export const setTokenBoundAssets = async (chainId: string, tba: string) => {
   try {

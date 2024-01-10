@@ -61,7 +61,7 @@ const decodeAbi = [
   }
 ];
 
-export const getOwnerAddressFromResolver = async (_name: string) => {
+export const getOwnerAddressFromResolver = async (chainId: number, _name: string) => {
 
   // const provider = new ethers.JsonRpcProvider('https://ethereum-goerli.publicnode.com');
   const ensAddress = "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e";
@@ -70,7 +70,7 @@ export const getOwnerAddressFromResolver = async (_name: string) => {
   // @ts-ignore
   const provider = new ethers.JsonRpcProvider(window.rpcUrl, {
     // @ts-ignore
-    chainId: window.chainId,
+    chainId: chainId,
     ensAddress,
   });
 

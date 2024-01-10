@@ -220,7 +220,13 @@
 
 	const checkCatNameAvailability = async (event: Event) => {
 		// @ts-ignore
-		catName = event.target.value.replace(/\s+/g, '-').replace(/-{2,}/g, '').replace(/^-+/g, '');
+		catName = event.target.value
+			.toLowerCase()
+			.replace(/\s+/g, '-')
+			.replace(/-{2,}/g, '')
+			.replace(/^-+/g, '')
+			.replace(/[;'"`\\]/g, '')
+			.replace(/^-+|-+$/g, '');
 		isCatNameAvailablePending = undefined;
 		isCatNameAvailable = undefined;
 		clearTimeout(debounceTimer);

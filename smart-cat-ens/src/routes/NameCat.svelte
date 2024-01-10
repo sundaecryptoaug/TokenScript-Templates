@@ -511,15 +511,15 @@
 					<p>Cat Address: {tba}</p>
 					{#if apiRequestStatus === 'success'}
 						<p style="margin-top: 12px">
-							Details: This action has assigned the name {catName} as an off chain ENS sub record to
-							your cats TokenBound Address. Enabled via ENS ERC-3668, TokenBound ERC-6551 and Smart Layer
-							ERC-5169.
+							Details: This action assigned the name {catName} as an off-chain ENS sub-record to your
+							cat's calculated TokenBound Address. Enabled through ENS ERC-3668, TokenBound ERC-6551,
+							and Smart Layer ERC-5169.
 						</p>
 					{/if}
 					{#if apiRequestStatus !== 'success'}
 						<p style="margin-top: 12px">
-							Details: This action will assign the name {catName} as an off chain ENS sub record to your
-							cats TokenBound Address. Enabled via ENS ERC-3668, TokenBound ERC-6551 and Smart Layer
+							This action assigns the name {catName} as an off-chain ENS sub-record to your cat's calculated
+							TokenBound Address. Enabled through ENS ERC-3668, TokenBound ERC-6551, and Smart Layer
 							ERC-5169.
 						</p>
 					{/if}

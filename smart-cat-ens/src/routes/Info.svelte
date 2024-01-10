@@ -25,7 +25,7 @@
 	{#if token}
 		<div style="text-align: center;">
 			{#if catName}
-				Cat Name: {catNameForViewOnly}
+				Cat Name: {catName}
 			{/if}
 			Info Details...
 		</div>

@@ -15,6 +15,7 @@
 		// @ts-ignore
 		tba = setTokenBoundAccount(tbaClient, token.contractAddress, token.tokenId);
 		if (tba) catName = await getCatName(tba);
+		console.log('catName', catName);
 		// You can load other data before hiding the loader
 		loading = false;
 	});
@@ -30,7 +31,7 @@
 <div>
 	{#if token}
 		<div style="text-align: center;">
-			{#if catName}
+			{#if catName?.length}
 				Cat ID: {tba}
 				Cat Name: {catName}
 			{/if}

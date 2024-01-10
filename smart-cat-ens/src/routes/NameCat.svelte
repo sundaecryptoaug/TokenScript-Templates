@@ -34,7 +34,7 @@
 	// @ts-ignore
 	window.onConfirm = async () => {
 		if (isCatNameAvailable === false) {
-			alert(`Sorry, {catName} has been taken. Please try another name.`);
+			alert(`Sorry, ${catName} has been taken. Please try another name.`);
 			return;
 		}
 		if (apiRequestStatus === 'success') {

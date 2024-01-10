@@ -33,6 +33,14 @@
 
 	// @ts-ignore
 	window.onConfirm = async () => {
+		if (isCatNameAvailable === false) {
+			alert(`Sorry, {catName} has been taken. Please try another name.`);
+			return;
+		}
+		if (apiRequestStatus === 'success') {
+			alert(`Your cat has been successfully named ${catName}`);
+			return;
+		}
 		// @ts-ignore
 		const challenge = `Registering your catId ${token.tokenId} name to ${catName}`;
 		// @ts-ignore
@@ -42,7 +50,8 @@
 				return;
 			}
 			const apiStatus = await applySubNameENS(
-				'http://scriptproxy.smarttokenlabs.com:8083',
+				'https://ens.test.smartlayer.network',
+				// 'https://ens.main.smartlayer.network',
 				catName,
 				token.tokenId,
 				signature
@@ -227,8 +236,6 @@
 			}
 			try {
 				const getIsCatNameAvailable: string = await resolve(catName);
-				// @ts-ignore
-				console.log('getIsCatNameAvailable......', getIsCatNameAvailable);
 				// @ts-ignore
 				const availableResolverStr = '0x0000000000000000000000000000000000000000';
 				// @ts-ignore

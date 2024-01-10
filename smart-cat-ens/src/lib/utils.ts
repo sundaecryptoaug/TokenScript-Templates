@@ -70,7 +70,8 @@ export const setTokenBoundAssets = async (chainId: string, tba: string) => {
 }
 
 export const getCatName = async (tba: string) => {
-  const catNameRequest = await fetch(`http://scriptproxy.smarttokenlabs.com:8083/name/${tba}`);
+  const catNameRequest = await fetch(`https://ens.test.smartlayer.network/name/${tba}`);
+  // const catNameRequest = await fetch(`https://ens.main.smartlayer.network/name/${tba}`);
   const nameResp = await catNameRequest.text();
   // Remove ENS subname details from View Name
   let catNameFormatted = nameResp?.toLowerCase().replace('.thesmartcats.eth', '');

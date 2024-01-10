@@ -155,9 +155,9 @@
 		// @ts-ignore
 		const provider = new ethers.JsonRpcProvider(window.rpcUrl, {
 			// @ts-ignore
-			chainId: window.chainId,
+			chainId: token.chainId,
 			// @ts-ignore
-			name: setChainIdName(window.chainId),
+			name: setChainIdName(token.chainId),
 			ensAddress
 		});
 

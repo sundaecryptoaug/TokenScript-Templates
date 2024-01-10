@@ -1,12 +1,14 @@
 <script lang="ts">
 	import context from '../lib/context';
 	import Loader from '../components/Loader.svelte';
-	import { getTokenBoundClientInstance, setTokenBoundAccount } from './../lib/utils';
+	import { getTokenBoundClientInstance, setTokenBoundAccount, getCatName } from './../lib/utils';
 
 	let token;
 	let loading = true;
 	let tba: string | undefined;
 	let catName: undefined | string | null;
+	// Remove ENS subname details from View Name
+	let catNameForViewOnly = catName?.toLowerCase().replace('thesmartcats.eth', '');
 
 	context.data.subscribe(async (value) => {
 		if (!value.token) return;
@@ -19,19 +21,13 @@
 		// You can load other data before hiding the loader
 		loading = false;
 	});
-
-	async function getCatName(tba: string) {
-		const catNameRequest = await fetch(`http://scriptproxy.smarttokenlabs.com:8083/name/${tba}`);
-		return catNameRequest.text();
-	}
 </script>
 
 <div>
 	{#if token}
 		<div style="text-align: center;">
-			{#if catName?.length}
-				Cat ID: {tba}
-				Cat Name: {catName}
+			{#if catName}
+				Cat Name: {catNameForViewOnly}
 			{/if}
 			Info Details...
 		</div>

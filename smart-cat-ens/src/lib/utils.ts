@@ -68,3 +68,9 @@ export const setTokenBoundAssets = async (chainId: string, tba: string) => {
     return [];
   }
 }
+
+export const getCatName = async (tba: string) => {
+  const catNameRequest = await fetch(`http://scriptproxy.smarttokenlabs.com:8083/name/${tba}`);
+  const nameResp = await catNameRequest.text();
+  return nameResp && nameResp != 'null' ? nameResp : undefined;
+}

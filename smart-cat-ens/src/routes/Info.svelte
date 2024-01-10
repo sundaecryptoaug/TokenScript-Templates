@@ -7,8 +7,6 @@
 	let loading = true;
 	let tba: string | undefined;
 	let catName: undefined | string | null;
-	// Remove ENS subname details from View Name
-	let catNameForViewOnly = catName?.toLowerCase().replace('thesmartcats.eth', '');
 
 	context.data.subscribe(async (value) => {
 		if (!value.token) return;

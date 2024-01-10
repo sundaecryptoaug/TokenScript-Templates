@@ -3,7 +3,8 @@
 	import {
 		getTokenBoundClientInstance,
 		setTokenBoundAccount,
-		setChainIdName
+		setChainIdName,
+		getCatName
 	} from './../lib/utils';
 	//import { getOwnerAddressFromResolver } from './../lib/nameResolver';
 	import { ethers } from 'ethers';
@@ -27,7 +28,7 @@
 		if (tba) catName = await getCatName(tba);
 		// if the cat name is already defined, apply API request success
 		// to show the Success State UI with name and id details shown.
-		if (catName?.length) apiRequestStatus = 'success';
+		if (catName) apiRequestStatus = 'success';
 	});
 
 	// @ts-ignore
@@ -55,11 +56,6 @@
 			}
 		});
 	};
-
-	async function getCatName(tba: string) {
-		const catNameRequest = await fetch(`http://scriptproxy.smarttokenlabs.com:8083/name/${tba}`);
-		return catNameRequest.text();
-	}
 
 	async function applySubNameENS(
 		url: string,
@@ -488,17 +484,17 @@
 					</p>
 				</div>
 			{/if}
+			{#if apiRequestStatus === 'success'}
+				<div style="font-size: 14px; padding: 12px 4px; border-radius: 20px;">
+					<p>
+						Your Cat has been successfully and uniquely named {catName} 🎉
+					</p>
+				</div>
+			{/if}
 			{#if isCatNameAvailable === true && !isCatNameAvailablePending}
 				{#if apiRequestStatus !== 'success'}
 					<div style="font-size: 14px; padding: 12px 4px; border-radius: 20px;">
 						<p>✅ {catName} is available</p>
-					</div>
-				{/if}
-				{#if apiRequestStatus === 'success'}
-					<div style="font-size: 14px; padding: 12px 4px; border-radius: 20px;">
-						<p>
-							Your Cat has been successfully and uniquely named {catName} 🎉
-						</p>
 					</div>
 				{/if}
 				<div style="font-size: 14px; padding: 16px 18px; background: #fff4e0; border-radius: 20px;">

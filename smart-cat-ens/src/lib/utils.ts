@@ -1,11 +1,13 @@
 import { error } from '@sveltejs/kit';
 import { TokenboundClient } from '@tokenbound/sdk';
+import { ensTestEnvApi, ensProdEndApi } from './constants';
 
 export const getTokenBoundClientInstance = (chainId: number) => {
   return new TokenboundClient({
     chainId: chainId,
     // @ts-ignore
-    publicClientRPCUrl: window.rpcURL, // global TS engine variable of RPC for connected chain
+    publicClientRPCUrl: "https://rpc.ankr.com/eth_goerli", // global TS engine variable of RPC for connected chain
+    // publicClientRPCUrl: window.rpcURL, // global TS engine variable of RPC for connected chain
   });
 }
 
@@ -70,11 +72,10 @@ export const setTokenBoundAssets = async (chainId: string, tba: string) => {
 }
 
 export const getCatName = async (tba: string) => {
-  const catNameRequest = await fetch(`https://ens.test.smartlayer.network/name/${tba}`);
-  // const catNameRequest = await fetch(`https://ens.main.smartlayer.network/name/${tba}`);
+  const catNameRequest = await fetch(`${ensTestEnvApi}/name/${tba}`);
+  // const catNameRequest = await fetch(`${ensProdEndApi}/name/${tba}`);
   const nameResp = await catNameRequest.text();
   // Remove ENS subname details from View Name
   let catNameFormatted = nameResp?.toLowerCase().replace('.thesmartcats.eth', '');
   return catNameFormatted && catNameFormatted != 'null' ? catNameFormatted : undefined;
 }
-

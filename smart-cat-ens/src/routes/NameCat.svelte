@@ -6,6 +6,7 @@
 		setChainIdName,
 		getCatName
 	} from './../lib/utils';
+	import { ensTestEnvApi, ensProdEndApi } from './../lib/constants';
 	//import { getOwnerAddressFromResolver } from './../lib/nameResolver';
 	import { ethers } from 'ethers';
 
@@ -50,8 +51,8 @@
 				return;
 			}
 			const apiStatus = await applySubNameENS(
-				'https://ens.test.smartlayer.network',
-				// 'https://ens.main.smartlayer.network',
+				ensTestEnvApi,
+				// ensProdEndApi
 				catName,
 				token.tokenId,
 				signature
@@ -158,7 +159,8 @@
 		const name = _name + '.smartcat.eth';
 
 		// @ts-ignore
-		const provider = new ethers.JsonRpcProvider(window.rpcUrl, {
+		const provider = new ethers.JsonRpcProvider('https://rpc.ankr.com/eth_goerli', {
+			// const provider = new ethers.JsonRpcProvider(window.rpcUrl, {
 			// @ts-ignore
 			chainId: token.chainId,
 			// @ts-ignore

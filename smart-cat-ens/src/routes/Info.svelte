@@ -20,10 +20,8 @@
 		loading = false;
 	});
 
-	async function getCatName(tokenBoundAddress: string) {
-		const catNameRequest = await fetch(
-			`http://scriptproxy.smarttokenlabs.com:8083/name/${tokenBoundAddress}`
-		);
+	async function getCatName(tba: string) {
+		const catNameRequest = await fetch(`http://scriptproxy.smarttokenlabs.com:8083/name/${tba}`);
 		return catNameRequest.text();
 	}
 </script>

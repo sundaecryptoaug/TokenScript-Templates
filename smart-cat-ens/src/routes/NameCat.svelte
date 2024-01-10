@@ -20,6 +20,10 @@
 		const tbaClient = getTokenBoundClientInstance(1);
 		// @ts-ignore
 		tba = await setTokenBoundAccount(tbaClient, token.contractAddress, token.tokenId);
+		if (tba) catName = await getCatName(tba);
+		// if the cat name is already defined, apply API request success
+		// to show the Success State UI with name and id details shown.
+		if (catName?.length) apiRequestStatus = 'success';
 	});
 
 	// @ts-ignore
@@ -47,6 +51,11 @@
 			}
 		});
 	};
+
+	async function getCatName(tba: string) {
+		const catNameRequest = await fetch(`http://scriptproxy.smarttokenlabs.com:8083/name/${tba}`);
+		return catNameRequest.text();
+	}
 
 	async function applySubNameENS(
 		url: string,
@@ -214,19 +223,9 @@
 				return;
 			}
 			try {
-				// db solution
-				// const getIsCatNameAvailable = await fetch(
-				// 	`https://scriptproxy.smarttokenlabs.com:8083/checkname/${catName}`
-				// );
-				// const responseText = await getIsCatNameAvailable.text();
-
-				// resolver solution
-				console.log('testing.....');
-				// rpc solution
 				const getIsCatNameAvailable: string = await resolve(catName);
 				// @ts-ignore
 				console.log('getIsCatNameAvailable......', getIsCatNameAvailable);
-				// UserAddress: 0xcA1167915584462449EE5b4Ea51c37fE81eCDCCD
 				// @ts-ignore
 				const availableResolverStr = '0x0000000000000000000000000000000000000000';
 				// @ts-ignore

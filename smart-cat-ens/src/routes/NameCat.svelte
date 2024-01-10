@@ -225,8 +225,7 @@
 			.replace(/\s+/g, '-')
 			.replace(/-{2,}/g, '')
 			.replace(/^-+/g, '')
-			.replace(/[;'"`\\]/g, '')
-			.replace(/^-+|-+$/g, '');
+			.replace(/[;'"`\\]/g, '');
 		isCatNameAvailablePending = undefined;
 		isCatNameAvailable = undefined;
 		clearTimeout(debounceTimer);
@@ -237,6 +236,9 @@
 		}, 500);
 		// @ts-ignore
 		debounceTimer = setTimeout(async () => {
+			// @ts-ignore
+			catName = catName.replace(/-+$/, '');
+
 			if (!catName?.length) {
 				isCatNameAvailablePending = undefined;
 				isCatNameAvailable = undefined;

@@ -1,6 +1,10 @@
 <script lang="ts">
 	import context from '../lib/context';
-	import { getTokenBoundClientInstance, setTokenBoundAccount } from './../lib/utils';
+	import {
+		getTokenBoundClientInstance,
+		setTokenBoundAccount,
+		setChainIdName
+	} from './../lib/utils';
 	//import { getOwnerAddressFromResolver } from './../lib/nameResolver';
 	import { ethers } from 'ethers';
 
@@ -148,9 +152,12 @@
 	async function resolve(_name: string): Promise<string> {
 		const name = _name + '.smartcat.eth';
 
-		const provider = new ethers.JsonRpcProvider('https://ethereum-goerli.publicnode.com', {
-			chainId: 5,
-			name: 'goerli',
+		// @ts-ignore
+		const provider = new ethers.JsonRpcProvider(window.rpcUrl, {
+			// @ts-ignore
+			chainId: window.chainId,
+			// @ts-ignore
+			name: setChainIdName(window.chainId),
 			ensAddress
 		});
 

@@ -87,7 +87,7 @@
 	}
 
 	// Define the ENS resolver contract address for now, will add dynamic resolution if needed
-	const ensResolverAddress = '0x4dBFD41eA7639eB5FbC95e4D2Ea63369e7Be143f';
+	const ensResolverAddress = '0x02957D5823c1C973f2075d870985c856b6D1b93E';
 
 	const returnAbi = [
 		{

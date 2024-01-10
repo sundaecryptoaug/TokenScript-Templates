@@ -65,7 +65,7 @@ export const getOwnerAddressFromResolver = async (chainId: number, _name: string
 
   // const provider = new ethers.JsonRpcProvider('https://ethereum-goerli.publicnode.com');
   const ensAddress = "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e";
-  const name = _name + '.smartcat.eth';
+  const name = _name + '.thesmartcats.eth';
 
   // @ts-ignore
   const provider = new ethers.JsonRpcProvider(window.rpcUrl, {

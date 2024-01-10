@@ -155,68 +155,62 @@
 
 	const ensAddress = '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e';
 
-	async function resolve(_name: string): Promise<string> {
-		const name = _name + '.smartcat.eth';
+	// TODO re-implement to resolve the name from ENS Resolver to API.
+	// async function resolve(_name: string): Promise<string> {
+	// 	const name = _name + '.thesmartcats.eth';
+	// 	// @ts-ignore
+	// 	const provider = new ethers.JsonRpcProvider('https://rpc.ankr.com/eth_goerli', {
+	// 		// const provider = new ethers.JsonRpcProvider(window.rpcUrl, {
+	// 		// @ts-ignore
+	// 		chainId: token.chainId,
+	// 		// @ts-ignore
+	// 		name: setChainIdName(token.chainId),
+	// 		ensAddress
+	// 	});
+	// 	const namehash = ethers.namehash(name);
+	// 	const dnsEncode = ethers.dnsEncode(name);
+	// 	const funcEncode = '0x3b3b57de' + namehash.substring(2);
+	// 	const catResolver = new ethers.Contract(
+	// 		ensResolverAddress,
+	// 		['function resolve(bytes name, bytes data) view returns (bytes)'],
+	// 		provider
+	// 	);
+	// 	//call, get error
+	// 	try {
+	// 		const resolverTx = await catResolver.resolve(dnsEncode, funcEncode);
+	// 		console.log(resolverTx);
+	// 	} catch (error) {
+	// 		//break down the data
+	// 		const iface = new ethers.Interface(returnAbi);
+	// 		// @ts-ignore
+	// 		const decoded = iface.decodeFunctionData('OffchainLookup', error.data);
+	// 		//format URL:
+	// 		const callUrl = decoded.urls[0]
+	// 			.replace('{sender}', decoded.sender)
+	// 			.replace('{data}', decoded.callData);
+	// 		try {
+	// 			const response = await fetch(callUrl);
+	// 			if (response.ok) {
+	// 				const data = await response.json();
 
-		// @ts-ignore
-		const provider = new ethers.JsonRpcProvider('https://rpc.ankr.com/eth_goerli', {
-			// const provider = new ethers.JsonRpcProvider(window.rpcUrl, {
-			// @ts-ignore
-			chainId: token.chainId,
-			// @ts-ignore
-			name: setChainIdName(token.chainId),
-			ensAddress
-		});
+	// 				//split up the response data
+	// 				const decode = new ethers.Interface(decodeAbi);
+	// 				const decoded = decode.decodeFunctionResult('decode', data.data);
 
-		const namehash = ethers.namehash(name);
-		const dnsEncode = ethers.dnsEncode(name);
-		const funcEncode = '0x3b3b57de' + namehash.substring(2);
+	// 				var truncated = decoded.address;
+	// 				if (decoded.address.length > 42) {
+	// 					truncated = '0x' + decoded.address.substring(decoded.address.length - 40);
+	// 				}
 
-		const catResolver = new ethers.Contract(
-			ensResolverAddress,
-			['function resolve(bytes name, bytes data) view returns (bytes)'],
-			provider
-		);
+	// 				return ethers.getAddress(truncated);
+	// 			}
+	// 		} catch (callError) {
+	// 			// nop, expected
+	// 		}
+	// 	}
 
-		//call, get error
-		try {
-			const resolverTx = await catResolver.resolve(dnsEncode, funcEncode);
-			console.log(resolverTx);
-		} catch (error) {
-			//break down the data
-			const iface = new ethers.Interface(returnAbi);
-			// @ts-ignore
-			const decoded = iface.decodeFunctionData('OffchainLookup', error.data);
-
-			//format URL:
-			const callUrl = decoded.urls[0]
-				.replace('{sender}', decoded.sender)
-				.replace('{data}', decoded.callData);
-
-			try {
-				const response = await fetch(callUrl);
-
-				if (response.ok) {
-					const data = await response.json();
-
-					//split up the response data
-					const decode = new ethers.Interface(decodeAbi);
-					const decoded = decode.decodeFunctionResult('decode', data.data);
-
-					var truncated = decoded.address;
-					if (decoded.address.length > 42) {
-						truncated = '0x' + decoded.address.substring(decoded.address.length - 40);
-					}
-
-					return ethers.getAddress(truncated);
-				}
-			} catch (callError) {
-				// nop, expected
-			}
-		}
-
-		return '0x0000000000000000000000000000000000000000';
-	}
+	// 	return '0x0000000000000000000000000000000000000000';
+	// }
 
 	const checkCatNameAvailability = async (event: Event) => {
 		// @ts-ignore
@@ -245,14 +239,23 @@
 				return;
 			}
 			try {
-				const getIsCatNameAvailable: string = await resolve(catName);
+				// Using DB solution
+				const response = await fetch(`${ensTestEnvApi}/checkname/${catName}`);
+				if (!response.ok) {
+					throw new Error(`HTTP error! Status: ${response.status}`);
+				}
+				const isCatNameAvailableResp = await response.text();
+				isCatNameAvailable = isCatNameAvailableResp === 'available';
+
+				// Using resolver solution
+				// const getIsCatNameAvailable: string = await resolve(catName);
 				// @ts-ignore
-				const availableResolverStr = '0x0000000000000000000000000000000000000000';
+				// const availableResolverStr = '0x0000000000000000000000000000000000000000';
 				// @ts-ignore
-				isCatNameAvailable = getIsCatNameAvailable === availableResolverStr;
+				// isCatNameAvailable = getIsCatNameAvailable === availableResolverStr;
+
 				isCatNameAvailablePending = false;
 			} catch (error) {
-				console.log('testing err.....');
 				console.error('Error checking cat name availability:', error);
 				isCatNameAvailable = false;
 			}

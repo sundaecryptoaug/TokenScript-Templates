@@ -68,6 +68,6 @@ export const getCatName = async (tba: string) => {
   // const catNameRequest = await fetch(`${ensProdEndApi}/name/${tba}`);
   const nameResp = await catNameRequest.text();
   // Remove ENS subname details from View Name
-  let catNameFormatted = nameResp?.toLowerCase().replace('.thesmartcats.eth', '');
+  let catNameFormatted = nameResp?.toLowerCase().replace('.thesmartcats.eth', '').replace('.smartcat.eth', '');
   return catNameFormatted && catNameFormatted != 'null' ? catNameFormatted : undefined;
 }

@@ -248,8 +248,7 @@
 			try {
 				// Using DB solution
 				const response = await fetch(
-					//@ts-ignore
-					`${environmentConfig[environmentType].nameAPIEndPoint}/checkname/${catName}${environmentConfig[environmentType][ensBaseNameExt]}`
+					`${environmentConfig[environmentType].nameAPIEndPoint}/checkname/${catName}${environmentConfig[environmentType].ensBaseNameExt}`
 				);
 				if (!response.ok) {
 					throw new Error(`HTTP error! Status: ${response.status}`);

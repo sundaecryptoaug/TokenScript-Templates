@@ -14,9 +14,9 @@
 		token = value.token;
 		const tbaClient = getTokenBoundClientInstance(1);
 		// @ts-ignore
-		tba = setTokenBoundAccount(tbaClient, token.contractAddress, token.tokenId);
+		tba = await setTokenBoundAccount(tbaClient, token.contractAddress, token.tokenId);
 		// @ts-ignore
-		if (tba) catName = await getCatName(environmentConfig[environmentType], tba);
+		if (tba) catName = await getCatName(environmentConfig[environmentType].nameAPIEndPoint, tba);
 		console.log('catName', catName);
 		// You can load other data before hiding the loader
 		loading = false;

@@ -254,7 +254,9 @@
 					throw new Error(`HTTP error! Status: ${response.status}`);
 				}
 				const isCatNameAvailableResp = await response.text();
-				isCatNameAvailable = isCatNameAvailableResp === 'available';
+				isCatNameAvailable = isCatNameAvailableResp.toLowerCase() === 'available';
+				isCatNameAvailablePending = false;
+
 				// 	// Using resolver solution
 				// 	const getIsCatNameAvailable: string = await resolve(catName);
 				// 	// @ts-ignore

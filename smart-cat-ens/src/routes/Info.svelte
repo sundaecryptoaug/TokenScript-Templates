@@ -8,6 +8,7 @@
 	let loading = true;
 	let tba: string | undefined;
 	let catName: undefined | string | null;
+	const environmentType = 'test'; // "test" or "prod" //
 
 	context.data.subscribe(async (value) => {
 		if (!value.token) return;

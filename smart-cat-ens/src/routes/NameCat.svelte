@@ -490,6 +490,7 @@
 		<div class="container">
 			<div style="display: flex; justify-content: space-between;">
 				<input
+					maxlength="42"
 					id="cat-name"
 					placeholder="Add a name here"
 					style="border: 2px solid blue; border-radius: 20px; padding: 10px 14px; width:100%; margin-right: 9px"

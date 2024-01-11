@@ -1,6 +1,5 @@
 import { error } from '@sveltejs/kit';
 import { TokenboundClient } from '@tokenbound/sdk';
-import { ensTestEnvApi, ensProdEndApi } from './constants';
 
 export const getTokenBoundClientInstance = (chainId: number) => {
   return new TokenboundClient({

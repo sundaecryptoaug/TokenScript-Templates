@@ -3,7 +3,6 @@
 	import Loader from '../components/Loader.svelte';
 	import { getTokenBoundClientInstance, setTokenBoundAccount, getCatName } from './../lib/utils';
 	import { environmentConfig } from './../lib/constants';
-
 	let token;
 	let loading = true;
 	let tba: string | undefined;

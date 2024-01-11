@@ -63,9 +63,8 @@ export const setTokenBoundAssets = async (chainId: string, tba: string) => {
   }
 }
 
-export const getCatName = async (tba: string) => {
-  const catNameRequest = await fetch(`${ensTestEnvApi}/name/${tba}`);
-  // const catNameRequest = await fetch(`${ensProdEndApi}/name/${tba}`);
+export const getCatName = async (uri: string, tba: string) => {
+  const catNameRequest = await fetch(`${uri}/name/${tba}`);
   const nameResp = await catNameRequest.text();
   // Remove ENS subname details from View Name
   let catNameFormatted = nameResp?.toLowerCase().replace('.thesmartcats.eth', '').replace('.smartcat.eth', '');

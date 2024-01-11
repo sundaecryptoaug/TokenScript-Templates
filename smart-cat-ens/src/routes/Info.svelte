@@ -2,6 +2,7 @@
 	import context from '../lib/context';
 	import Loader from '../components/Loader.svelte';
 	import { getTokenBoundClientInstance, setTokenBoundAccount, getCatName } from './../lib/utils';
+	import { environmentConfig } from './../lib/constants';
 
 	let token;
 	let loading = true;
@@ -14,7 +15,8 @@
 		const tbaClient = getTokenBoundClientInstance(1);
 		// @ts-ignore
 		tba = setTokenBoundAccount(tbaClient, token.contractAddress, token.tokenId);
-		if (tba) catName = await getCatName(tba);
+		// @ts-ignore
+		if (tba) catName = await getCatName(environmentConfig[environmentType], tba);
 		console.log('catName', catName);
 		// You can load other data before hiding the loader
 		loading = false;

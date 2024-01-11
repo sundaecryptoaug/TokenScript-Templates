@@ -1,2 +1,10 @@
-export const ensTestEnvApi = "https://ens.test.smartlayer.network"
-export const ensProdEndApi = "https://ens.main.smartlayer.network"
+export const environmentConfig = {
+  test: {
+    nameAPIEndPoint: "https://ens.test.smartlayer.network",
+    ensBaseNameExt: ".smartcat.eth"
+  },
+  prod: {
+    nameAPIEndPoint: "https://ens.main.smartlayer.network",
+    ensBaseNameExt: ".thesmartcats.eth"
+  }
+} 
